@@ -20,7 +20,7 @@
                 <x-label for="first_name" value="{{ 'First Name' }}" />
                 <x-input class="mt-1 block w-full" id="first_name"
                     name="first_name" type="text" :value="old('first_name')" required
-                    autofocus autocomplete="first_name" />
+                    autocomplete="first_name" />
             </div>
 
             <div>
@@ -28,14 +28,14 @@
                     value="{{ 'Middle Name (Optional)' }}" />
                 <x-input class="mt-1 block w-full" id="middle_name"
                     name="middle_name" type="text" :value="old('middle_name')"
-                    autofocus autocomplete="middle_name" />
+                    autocomplete="middle_name" />
             </div>
 
             <div>
                 <x-label for="last_name" value="{{ 'Last Name' }}" />
                 <x-input class="mt-1 block w-full" id="last_name"
                     name="last_name" type="text" :value="old('last_name')" required
-                    autofocus autocomplete="last_name" />
+                    autocomplete="last_name" />
             </div>
 
             <div class="mt-4">
