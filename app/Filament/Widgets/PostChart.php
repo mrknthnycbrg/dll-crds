@@ -16,25 +16,73 @@ class PostChart extends ChartWidget
 
     protected static ?string $heading = 'Posts';
 
+    public ?string $filter = 'years';
+
+    protected function getFilters(): ?array
+    {
+        return [
+            'years' => '2020-Present',
+            'year' => 'This year',
+            'month' => 'This month',
+            'week' => 'This week',
+        ];
+    }
+
     protected function getData(): array
     {
-        $data = Trend::model(Post::class)
-            ->dateColumn('date_published')
-            ->between(
-                start: now()->startOfYear()->subYears(3),
-                end: now()->endOfYear(),
-            )
-            ->perMonth()
-            ->count();
+        $activeFilter = $this->filter ?? 'years';
+
+        switch ($activeFilter) {
+            case 'years':
+                $data = Trend::model(Post::class)
+                    ->dateColumn('date_published')
+                    ->between(
+                        start: today()->startOfYear()->setYear(2020),
+                        end: today(),
+                    )
+                    ->perMonth()
+                    ->count();
+                break;
+            case 'year':
+                $data = Trend::model(Post::class)
+                    ->dateColumn('date_published')
+                    ->between(
+                        start: today()->startOfYear(),
+                        end: today()->endOfYear(),
+                    )
+                    ->perMonth()
+                    ->count();
+                break;
+            case 'month':
+                $data = Trend::model(Post::class)
+                    ->dateColumn('date_published')
+                    ->between(
+                        start: today()->startOfMonth(),
+                        end: today()->endOfMonth(),
+                    )
+                    ->perDay()
+                    ->count();
+                break;
+            case 'week':
+                $data = Trend::model(Post::class)
+                    ->dateColumn('date_published')
+                    ->between(
+                        start: today()->startOfWeek(0),
+                        end: today()->endOfWeek(6),
+                    )
+                    ->perDay()
+                    ->count();
+                break;
+        }
 
         return [
             'datasets' => [
                 [
-                    'label' => 'Posts',
-                    'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
+                    'label' => 'Posts Created',
+                    'data' => $data ? $data->map(fn (TrendValue $value) => $value->aggregate) : [],
                 ],
             ],
-            'labels' => $data->map(fn (TrendValue $value) => $value->date),
+            'labels' => $data ? $data->map(fn (TrendValue $value) => $value->date) : [],
         ];
     }
 
