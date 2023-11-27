@@ -9,7 +9,7 @@ return [
         'enabled' => true,
         'log_name' => 'Resource',
         'logger' => \Z3d0X\FilamentLogger\Loggers\ResourceLogger::class,
-        'color' => 'success',
+        'color' => 'info',
         'exclude' => [],
     ],
 
@@ -23,7 +23,7 @@ return [
     'notifications' => [
         'enabled' => true,
         'logger' => \Z3d0X\FilamentLogger\Loggers\NotificationLogger::class,
-        'color' => null,
+        'color' => 'success',
         'log_name' => 'Notification',
     ],
 
@@ -33,9 +33,7 @@ return [
         'color' => 'warning',
         'logger' => \Z3d0X\FilamentLogger\Loggers\ModelLogger::class,
         'register' => [],
-        'exclude' => [
-            App\Models\User::class,
-        ],
+        'exclude' => [],
     ],
 
     'custom' => [],

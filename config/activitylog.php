@@ -17,7 +17,7 @@ return [
      * If no log name is passed to the activity() helper
      * we use this default log name.
      */
-    'default_log_name' => 'default',
+    'default_log_name' => 'activity',
 
     /*
      * You can specify an auth driver here that gets user models.
@@ -28,7 +28,7 @@ return [
     /*
      * If set to true, the subject returns soft deleted models.
      */
-    'subject_returns_soft_deleted_models' => false,
+    'subject_returns_soft_deleted_models' => true,
 
     /*
      * This model will be used to log activity.
