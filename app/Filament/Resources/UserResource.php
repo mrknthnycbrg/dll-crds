@@ -66,15 +66,22 @@ class UserResource extends Resource
                                     ->markAsRequired(false)
                                     ->unique(ignorable: fn ($record) => $record),
                                 Forms\Components\TextInput::make('password')
+                                    ->label('Password')
                                     ->password()
                                     ->minLength(8)
                                     ->dehydrateStateUsing(fn (string $state): string => Hash::make($state))
                                     ->dehydrated(fn (?string $state): bool => filled($state))
                                     ->required(fn (string $operation): bool => $operation === 'create')
                                     ->markAsRequired(false),
-                                Forms\Components\CheckboxList::make('roles')
+                                Forms\Components\Select::make('roles')
+                                    ->label('Roles')
+                                    ->placeholder('Select roles')
+                                    ->helperText('Always assign the "Panel User" role along with any other roles.')
                                     ->relationship('roles', 'name')
-                                    ->helperText('Always assign the "Panel User" role along with any other roles.'),
+                                    ->multiple()
+                                    ->searchable()
+                                    ->preload()
+                                    ->native(false),
                             ])
                             ->columns(3),
                     ])
