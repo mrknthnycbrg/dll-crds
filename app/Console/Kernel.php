@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('auth:clear-resets')->daily();
         $schedule->command('telescope:prune')->daily();
+        $schedule->command('activitylog:clean')->weekly();
         $schedule->command('backup:run')->weekly();
     }
 
@@ -22,7 +23,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands(): void
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

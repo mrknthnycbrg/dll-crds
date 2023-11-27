@@ -91,6 +91,9 @@ class AdminPanelProvider extends PanelProvider
                         'production' => null,
                         default => Color::Blue,
                     }),
+            ])
+            ->resources([
+                config('filament-logger.activity_resource')
             ]);
     }
 }
