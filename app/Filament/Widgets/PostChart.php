@@ -21,7 +21,7 @@ class PostChart extends ChartWidget
     protected function getFilters(): ?array
     {
         return [
-            'years' => '2020-Present',
+            'years' => '2020 - Present',
             'year' => 'This year',
             'month' => 'This month',
             'week' => 'This week',
@@ -30,7 +30,7 @@ class PostChart extends ChartWidget
 
     protected function getData(): array
     {
-        $activeFilter = $this->filter ?? 'years';
+        $activeFilter = $this->filter;
 
         switch ($activeFilter) {
             case 'years':
@@ -73,16 +73,26 @@ class PostChart extends ChartWidget
                     ->perDay()
                     ->count();
                 break;
+            default:
+                $data = Trend::model(Post::class)
+                    ->dateColumn('date_published')
+                    ->between(
+                        start: today()->startOfYear()->setYear(2020),
+                        end: today(),
+                    )
+                    ->perMonth()
+                    ->count();
+                break;
         }
 
         return [
             'datasets' => [
                 [
-                    'label' => 'Posts Created',
-                    'data' => $data ? $data->map(fn (TrendValue $value) => $value->aggregate) : [],
+                    'label' => 'Posts created',
+                    'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
                 ],
             ],
-            'labels' => $data ? $data->map(fn (TrendValue $value) => $value->date) : [],
+            'labels' => $data->map(fn (TrendValue $value) => $value->date),
         ];
     }
 

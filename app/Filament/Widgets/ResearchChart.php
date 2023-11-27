@@ -21,7 +21,7 @@ class ResearchChart extends ChartWidget
     protected function getFilters(): ?array
     {
         return [
-            'years' => '2020-Present',
+            'years' => '2020 - Present',
             'year' => 'This year',
             'month' => 'This month',
             'week' => 'This week',
@@ -30,7 +30,7 @@ class ResearchChart extends ChartWidget
 
     protected function getData(): array
     {
-        $activeFilter = $this->filter ?? 'years';
+        $activeFilter = $this->filter;
 
         switch ($activeFilter) {
             case 'years':
@@ -73,16 +73,26 @@ class ResearchChart extends ChartWidget
                     ->perDay()
                     ->count();
                 break;
+            default:
+                $data = Trend::model(Research::class)
+                    ->dateColumn('date_submitted')
+                    ->between(
+                        start: today()->startOfYear()->setYear(2020),
+                        end: today(),
+                    )
+                    ->perMonth()
+                    ->count();
+                break;
         }
 
         return [
             'datasets' => [
                 [
-                    'label' => 'Researches Added',
-                    'data' => $data ? $data->map(fn (TrendValue $value) => $value->aggregate) : [],
+                    'label' => 'Researches added',
+                    'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
                 ],
             ],
-            'labels' => $data ? $data->map(fn (TrendValue $value) => $value->date) : [],
+            'labels' => $data->map(fn (TrendValue $value) => $value->date),
         ];
     }
 
