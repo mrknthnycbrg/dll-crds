@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Post extends Model
 {
     use HasFactory;
+    use LogsActivity;
     use SoftDeletes;
 
     /**
@@ -45,6 +48,12 @@ class Post extends Model
         'published' => 'boolean',
         'date_published' => 'date',
     ];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable();
+    }
 
     public function formattedImage()
     {

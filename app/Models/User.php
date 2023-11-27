@@ -12,6 +12,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser, MustVerifyEmail
@@ -20,6 +22,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     use HasFactory;
     use HasPanelShield;
     use HasRoles;
+    use LogsActivity;
     use Notifiable;
     use SoftDeletes;
     use TwoFactorAuthenticatable;
@@ -62,6 +65,12 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     public function number(): HasOne
     {
         return $this->hasOne(Number::class);
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logExcept(['password']);
     }
 
     protected static function boot(): void
