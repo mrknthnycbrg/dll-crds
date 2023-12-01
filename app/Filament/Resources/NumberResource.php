@@ -30,9 +30,11 @@ class NumberResource extends Resource
 
     protected static ?string $navigationLabel = 'Numbers';
 
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 6;
 
     protected static ?string $navigationGroup = 'User Management';
+
+    protected static ?string $navigationParentItem = 'Users';
 
     public static function form(Form $form): Form
     {
@@ -90,7 +92,8 @@ class NumberResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make(),
+                Tables\Filters\TrashedFilter::make()
+                    ->native(false),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

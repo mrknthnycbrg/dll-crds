@@ -34,6 +34,8 @@ class DepartmentResource extends Resource
 
     protected static ?string $navigationGroup = 'Research Management';
 
+    protected static ?string $navigationParentItem = 'Researches';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -78,7 +80,8 @@ class DepartmentResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make(),
+                Tables\Filters\TrashedFilter::make()
+                    ->native(false),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

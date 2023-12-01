@@ -115,8 +115,10 @@ class DownloadableResource extends Resource
                     ->label('Published')
                     ->placeholder('All downloadables')
                     ->trueLabel('Published downloadables')
-                    ->falseLabel('Unpublished downloadables'),
-                Tables\Filters\TrashedFilter::make(),
+                    ->falseLabel('Unpublished downloadables')
+                    ->native(false),
+                Tables\Filters\TrashedFilter::make()
+                    ->native(false),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

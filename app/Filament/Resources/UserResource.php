@@ -33,7 +33,7 @@ class UserResource extends Resource
 
     protected static ?string $navigationLabel = 'Users';
 
-    protected static ?int $navigationSort = 6;
+    protected static ?int $navigationSort = 5;
 
     protected static ?string $navigationGroup = 'User Management';
 
@@ -141,8 +141,10 @@ class UserResource extends Resource
                     ->nullable()
                     ->placeholder('All users')
                     ->trueLabel('Verified users')
-                    ->falseLabel('Unverified users'),
-                Tables\Filters\TrashedFilter::make(),
+                    ->falseLabel('Unverified users')
+                    ->native(false),
+                Tables\Filters\TrashedFilter::make()
+                    ->native(false),
             ])
             ->actions([
                 Impersonate::make(),

@@ -186,13 +186,15 @@ class ResearchResource extends Resource
                     ->label('Published')
                     ->placeholder('All researches')
                     ->trueLabel('Published researches')
-                    ->falseLabel('Unpublished researches'),
+                    ->falseLabel('Unpublished researches')
+                    ->native(false),
                 Tables\Filters\SelectFilter::make('department')
                     ->relationship('department', 'name')
                     ->searchable()
                     ->preload()
                     ->native(false),
-                Tables\Filters\TrashedFilter::make(),
+                Tables\Filters\TrashedFilter::make()
+                    ->native(false),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

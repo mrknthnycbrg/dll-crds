@@ -170,8 +170,10 @@ class PostResource extends Resource
                     ->label('Published')
                     ->placeholder('All posts')
                     ->trueLabel('Published posts')
-                    ->falseLabel('Unpublished posts'),
-                Tables\Filters\TrashedFilter::make(),
+                    ->falseLabel('Unpublished posts')
+                    ->native(false),
+                Tables\Filters\TrashedFilter::make()
+                    ->native(false),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
