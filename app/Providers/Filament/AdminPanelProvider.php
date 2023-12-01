@@ -32,12 +32,14 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->profile(EditProfile::class)
-            ->sidebarCollapsibleOnDesktop()
             ->favicon(asset('images/logo.png'))
+            ->brandName('DLL-CRDS Admin')
+            ->sidebarCollapsibleOnDesktop()
             ->navigationGroups([
                 'Research Management',
                 'Post Management',
                 'User Management',
+                'Settings',
             ])
             ->colors([
                 'primary' => Color::Blue,
