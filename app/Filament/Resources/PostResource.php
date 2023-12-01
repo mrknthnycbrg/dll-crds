@@ -47,6 +47,7 @@ class PostResource extends Resource
                             ->schema([
                                 Forms\Components\TextInput::make('title')
                                     ->label('Title')
+                                    ->placeholder('Enter title')
                                     ->required()
                                     ->markAsRequired(false)
                                     ->live(onBlur: true)
@@ -58,6 +59,7 @@ class PostResource extends Resource
                                     ->dehydrated(),
                                 Forms\Components\RichEditor::make('content')
                                     ->label('Content')
+                                    ->placeholder('Enter content')
                                     ->required()
                                     ->markAsRequired(false)
                                     ->disableToolbarButtons([
@@ -106,11 +108,11 @@ class PostResource extends Resource
                                     ->closeOnDateSelection(),
                                 Forms\Components\TagsInput::make('author')
                                     ->label('Author(s)')
-                                    ->placeholder('')
+                                    ->placeholder('Add author')
                                     ->separator(', '),
                                 Forms\Components\TagsInput::make('topic')
                                     ->label('Topic(s)')
-                                    ->placeholder('')
+                                    ->placeholder('Add topic')
                                     ->separator(', '),
                             ]),
                     ])

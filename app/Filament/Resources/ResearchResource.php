@@ -47,6 +47,7 @@ class ResearchResource extends Resource
                             ->schema([
                                 Forms\Components\TextInput::make('title')
                                     ->label('Title')
+                                    ->placeholder('Enter title')
                                     ->required()
                                     ->markAsRequired(false)
                                     ->live(onBlur: true)
@@ -58,6 +59,7 @@ class ResearchResource extends Resource
                                     ->unique(ignorable: fn ($record) => $record),
                                 Forms\Components\RichEditor::make('abstract')
                                     ->label('Abstract')
+                                    ->placeholder('Enter abstract')
                                     ->disableToolbarButtons([
                                         'attachFiles',
                                     ])
@@ -97,6 +99,7 @@ class ResearchResource extends Resource
                                     ->closeOnDateSelection(),
                                 Forms\Components\TagsInput::make('author')
                                     ->label('Author(s)')
+                                    ->placeholder('Add author')
                                     ->separator(', '),
                                 Forms\Components\TagsInput::make('keyword')
                                     ->label('Keyword(s)')
@@ -117,7 +120,7 @@ class ResearchResource extends Resource
                                     ->native(false),
                                 Forms\Components\TagsInput::make('adviser')
                                     ->label('Adviser')
-                                    ->placeholder('Adviser')
+                                    ->placeholder('Add adviser')
                                     ->separator(', '),
                             ]),
                     ])

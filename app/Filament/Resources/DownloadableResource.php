@@ -44,6 +44,7 @@ class DownloadableResource extends Resource
                             ->schema([
                                 Forms\Components\TextInput::make('name')
                                     ->label('Name')
+                                    ->placeholder('Enter name')
                                     ->required()
                                     ->markAsRequired(false)
                                     ->unique(ignorable: fn ($record) => $record),
