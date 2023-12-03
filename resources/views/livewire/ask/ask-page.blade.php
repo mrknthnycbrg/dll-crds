@@ -19,7 +19,6 @@
                     {{ 'Ask' }}
                 </x-button>
             </form>
-
             <textarea
                 class="mt-4 block h-40 w-full rounded-md border-gray-300 shadow-sm focus:border-blue-900 focus:ring-blue-900"
                 readonly wire:model="output"></textarea>
