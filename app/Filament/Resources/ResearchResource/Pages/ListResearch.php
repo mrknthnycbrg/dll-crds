@@ -25,22 +25,22 @@ class ListResearch extends ListRecords
                         ->label('Title')
                         ->required()
                         ->mutateBeforeCreate(fn ($value) => Str::title($value)),
-                    ImportField::make('author')
-                        ->label('Authors')
-                        ->mutateBeforeCreate(fn ($value) => Str::title($value)),
+                    ImportField::make('abstract')
+                        ->label('Abstract'),
                     ImportField::make('date_submitted')
                         ->label('Date Submitted')
                         ->mutateBeforeCreate(fn ($value) => Date::excelToDateTimeObject($value)
                             ->format('Y-m-d')),
+                    ImportField::make('author')
+                        ->label('Author(s)')
+                        ->mutateBeforeCreate(fn ($value) => Str::title($value)),
+                    ImportField::make('keyword')
+                        ->label('Keyword(s)'),
                     ImportField::make('department_id')
                         ->label('Department'),
                     ImportField::make('adviser')
                         ->label('Adviser')
                         ->mutateBeforeCreate(fn ($value) => Str::title($value)),
-                    ImportField::make('keyword')
-                        ->label('Keywords'),
-                    ImportField::make('abstract')
-                        ->label('Abstract'),
                 ]),
         ];
     }

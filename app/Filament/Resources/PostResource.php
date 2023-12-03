@@ -106,13 +106,18 @@ class PostResource extends Resource
                                     ->format('Y-m-d')
                                     ->native(false)
                                     ->closeOnDateSelection(),
+                                Forms\Components\Select::make('category_id')
+                                    ->label('Category')
+                                    ->placeholder('Select category')
+                                    ->relationship('category', 'name')
+                                    ->searchable()
+                                    ->preload()
+                                    ->required()
+                                    ->markAsRequired(false)
+                                    ->native(false),
                                 Forms\Components\TagsInput::make('author')
                                     ->label('Author(s)')
                                     ->placeholder('Add author')
-                                    ->separator(', '),
-                                Forms\Components\TagsInput::make('topic')
-                                    ->label('Topic(s)')
-                                    ->placeholder('Add topic')
                                     ->separator(', '),
                             ]),
                     ])
@@ -141,8 +146,8 @@ class PostResource extends Resource
                     ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('topic')
-                    ->label('Topic(s)')
+                Tables\Columns\TextColumn::make('category.name')
+                    ->label('Category')
                     ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
