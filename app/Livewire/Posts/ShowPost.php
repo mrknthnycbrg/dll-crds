@@ -18,7 +18,9 @@ class ShowPost extends Component
     #[Layout('layouts.app')]
     public function render()
     {
-        $post = Post::where('slug', $this->slug)->firstOrFail();
+        $post = Post::where('slug', $this->slug)
+            ->with('category')
+            ->firstOrFail();
 
         return view('livewire.posts.show-post', compact('post'));
     }

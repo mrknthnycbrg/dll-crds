@@ -16,7 +16,7 @@ class Search extends Component
 
     public function render()
     {
-        $researches = Research::search($this->search)
+        $researches = Research::search(trim($this->search))
             ->query(function ($query) {
                 $query->join('departments', 'researches.department_id', '=', 'departments.id')
                     ->where('published', true)

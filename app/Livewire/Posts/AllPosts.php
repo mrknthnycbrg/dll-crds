@@ -14,7 +14,8 @@ class AllPosts extends Component
     #[Layout('layouts.app')]
     public function render()
     {
-        $posts = Post::where('published', true)
+        $posts = Post::with('category')
+            ->where('published', true)
             ->orderBy('date_published', 'desc')
             ->simplePaginate(6);
 

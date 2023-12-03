@@ -12,7 +12,8 @@ class HomePage extends Component
     #[Layout('layouts.app')]
     public function render()
     {
-        $latestPosts = Post::where('published', true)
+        $latestPosts = Post::with('category')
+            ->where('published', true)
             ->orderBy('date_published', 'desc')
             ->take(3)
             ->get();
