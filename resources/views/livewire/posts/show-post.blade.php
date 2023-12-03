@@ -23,8 +23,8 @@
             {!! $post->content !!}
         </div>
         <p class="text-gray-900">
-            <span class="font-extrabold">{{ 'Topic(s):' }}</span>
-            {{ $post->topic }}
+            <span class="font-extrabold">{{ 'Category:' }}</span>
+            {{ $post->category->name }}
         </p>
     </article>
 </div>

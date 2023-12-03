@@ -34,6 +34,8 @@
                         {{ $post->title }}</h2>
                     <p class="mb-2 text-sm font-bold text-gray-900">
                         {{ $post->author }}</p>
+                    <p class="mb-2 text-sm font-medium text-gray-900">
+                        {{ $post->category->name }}</p>
                     <p class="mb-2 text-sm font-light text-gray-900">
                         {{ $post->formattedContent() }}
                     </p>
