@@ -26,12 +26,12 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $title = $this->faker->sentence(),
+            'title' => $title = $this->faker->unique()->sentence(),
             'slug' => Str::slug($title),
             'author' => $this->faker->name(),
-            'topic' => $this->faker->word(),
             'image_path' => null,
-            'content' => $this->faker->realText(1000),
+            'content' => $this->faker->unique()->realText(1500),
+            'category_id' => $this->faker->numberBetween(1, 10),
             'published' => true,
             'date_published' => $this->faker->dateTimeBetween('-3 years'),
         ];

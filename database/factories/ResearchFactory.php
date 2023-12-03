@@ -26,13 +26,13 @@ class ResearchFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $title = $this->faker->sentence(),
+            'title' => $title = $this->faker->unique()->sentence(),
             'slug' => Str::slug($title),
-            'author' => $this->faker->name(),
+            'author' => $this->faker->unique()->name(),
             'adviser' => $this->faker->name(),
             'keyword' => $this->faker->word(),
             'pdf_path' => null,
-            'abstract' => $this->faker->realText(250),
+            'abstract' => $this->faker->unique()->realText(3000),
             'department_id' => $this->faker->numberBetween(1, 8),
             'published' => true,
             'date_submitted' => $this->faker->dateTimeBetween('-3 years'),
