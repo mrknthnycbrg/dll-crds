@@ -16,7 +16,7 @@ class AllPosts extends Component
     {
         $posts = Post::with('category')
             ->where('published', true)
-            ->orderBy('date_published', 'desc')
+            ->latest('date_published')
             ->simplePaginate(6);
 
         return view('livewire.posts.all-posts', compact('posts'));

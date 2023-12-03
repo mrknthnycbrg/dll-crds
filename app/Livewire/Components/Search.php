@@ -20,7 +20,7 @@ class Search extends Component
             ->query(function ($query) {
                 $query->join('departments', 'researches.department_id', '=', 'departments.id')
                     ->where('published', true)
-                    ->orderBy('date_submitted', 'desc');
+                    ->latest('date_submitted');
             })
             ->simplePaginate(6);
 

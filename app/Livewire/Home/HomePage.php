@@ -14,13 +14,13 @@ class HomePage extends Component
     {
         $latestPosts = Post::with('category')
             ->where('published', true)
-            ->orderBy('date_published', 'desc')
+            ->latest('date_published')
             ->take(3)
             ->get();
 
         $latestResearches = Research::with('department')
             ->where('published', true)
-            ->orderBy('date_submitted', 'desc')
+            ->latest('date_submitted')
             ->take(3)
             ->get();
 

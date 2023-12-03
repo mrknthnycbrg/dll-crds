@@ -22,7 +22,17 @@ class ShowResearch extends Component
             ->with('department')
             ->firstOrFail();
 
-        return view('livewire.researches.show-research', compact('research'));
+        $relatedResearches = Research::with('department')
+            ->where([
+                ['id', '!=', $research->id],
+                ['department_id', '=', $research->department_id],
+                ['published', '=', true],
+            ])
+            ->latest('date_submitted')
+            ->take(3)
+            ->get();
+
+        return view('livewire.researches.show-research', compact('research', 'relatedResearches'));
     }
 
     public function view()

@@ -22,6 +22,17 @@ class ShowPost extends Component
             ->with('category')
             ->firstOrFail();
 
-        return view('livewire.posts.show-post', compact('post'));
+        $relatedPosts = Post::with('category')
+            ->where([
+                ['id', '!=', $post->id],
+                ['category_id', '=', $post->category_id],
+                ['published', '=', true],
+            ])
+            ->latest('date_published')
+            ->take(3)
+            ->get();
+
+
+        return view('livewire.posts.show-post', compact('post', 'relatedPosts'));
     }
 }

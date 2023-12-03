@@ -16,7 +16,7 @@ class AllDownloadables extends Component
     public function render()
     {
         $downloadables = Downloadable::where('published', true)
-            ->orderBy('date_published', 'desc')
+            ->latest('date_published')
             ->simplePaginate(6);
 
         return view('livewire.downloadables.all-downloadables', compact('downloadables'));
