@@ -22,7 +22,7 @@ class Search extends Component
                     ->where('published', true)
                     ->latest('date_submitted');
             })
-            ->simplePaginate(6);
+            ->paginate(6);
 
         return view('livewire.components.search', compact('researches'));
     }

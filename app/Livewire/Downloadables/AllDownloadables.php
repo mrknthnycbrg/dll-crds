@@ -17,7 +17,7 @@ class AllDownloadables extends Component
     {
         $downloadables = Downloadable::where('published', true)
             ->latest('date_published')
-            ->simplePaginate(6);
+            ->paginate(6);
 
         return view('livewire.downloadables.all-downloadables', compact('downloadables'));
     }

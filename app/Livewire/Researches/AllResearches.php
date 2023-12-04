@@ -17,7 +17,7 @@ class AllResearches extends Component
         $researches = Research::with('department')
             ->where('published', true)
             ->latest('date_submitted')
-            ->simplePaginate(6);
+            ->paginate(6);
 
         return view('livewire.researches.all-researches', compact('researches'));
     }
