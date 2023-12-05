@@ -7,11 +7,13 @@ use App\Models\Downloadable;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class DownloadableResource extends Resource
@@ -47,7 +49,20 @@ class DownloadableResource extends Resource
                                     ->placeholder('Enter name')
                                     ->required()
                                     ->markAsRequired(false)
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                                Forms\Components\TextInput::make('slug')
+                                    ->label('Slug')
+                                    ->disabled()
+                                    ->dehydrated()
                                     ->unique(ignorable: fn ($record) => $record),
+                                Forms\Components\RichEditor::make('description')
+                                    ->label('Description')
+                                    ->placeholder('Enter description')
+                                    ->disableToolbarButtons([
+                                        'attachFiles',
+                                    ])
+                                    ->columnSpanFull(),
                                 Forms\Components\FileUpload::make('downloadable_path')
                                     ->label('File')
                                     ->required()
@@ -88,6 +103,11 @@ class DownloadableResource extends Resource
                     ->label('Name')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('slug')
+                    ->label('Slug')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('date_published')
                     ->label('Date Published')
                     ->date()

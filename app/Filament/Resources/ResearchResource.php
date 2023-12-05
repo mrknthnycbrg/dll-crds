@@ -117,7 +117,21 @@ class ResearchResource extends Resource
                                     ->preload()
                                     ->required()
                                     ->markAsRequired(false)
-                                    ->native(false),
+                                    ->native(false)
+                                    ->createOptionForm([
+                                        Forms\Components\TextInput::make('name')
+                                            ->label('Name')
+                                            ->placeholder('Enter name')
+                                            ->required()
+                                            ->markAsRequired(false)
+                                            ->live(onBlur: true)
+                                            ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                                        Forms\Components\TextInput::make('slug')
+                                            ->label('Slug')
+                                            ->disabled()
+                                            ->dehydrated()
+                                            ->unique(ignorable: fn ($record) => $record),
+                                    ]),
                                 Forms\Components\TagsInput::make('adviser')
                                     ->label('Adviser')
                                     ->placeholder('Add adviser')
