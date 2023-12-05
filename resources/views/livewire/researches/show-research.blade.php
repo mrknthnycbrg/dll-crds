@@ -8,20 +8,25 @@
             {{ $research->title }}
         </h1>
         <p class="text-gray-900">
-            <span class="font-extrabold">{{ 'Author(s):' }}</span>
-            {{ $research->author }}
+            <span class="font-extrabold">{{ 'Department:' }}</span>
+            <span
+                class="my-2 inline-flex items-center gap-x-1.5 rounded-full border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900"
+                href="/researches/department/{{ $research->department->slug }}"
+                role="button" wire:navigate>
+                {{ $research->department->name }}
+            </span>
+        </p>
+        <p class="text-gray-900">
+            <span class="font-extrabold">{{ 'Adviser:' }}</span>
+            {{ $research->adviser }}
         </p>
         <p class="text-gray-900">
             <span class="font-extrabold">{{ 'Date Submitted:' }}</span>
             {{ $research->formattedDAte() }}
         </p>
         <p class="text-gray-900">
-            <span class="font-extrabold">{{ 'Department:' }}</span>
-            {{ $research->department->name }}
-        </p>
-        <p class="text-gray-900">
-            <span class="font-extrabold">{{ 'Adviser:' }}</span>
-            {{ $research->adviser }}
+            <span class="font-extrabold">{{ 'Author(s):' }}</span>
+            {{ $research->author }}
         </p>
         <p class="text-gray-900">
             <span class="font-extrabold">{{ 'Keyword(s):' }}</span>
@@ -33,7 +38,7 @@
         </div>
         @if ($research->pdf_path)
             <x-button wire:click="view">
-                {{ 'View PDF' }}
+                {{ 'View' }}
             </x-button>
         @endif
     </div>

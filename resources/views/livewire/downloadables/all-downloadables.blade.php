@@ -13,7 +13,7 @@
         <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
             @foreach ($downloadables as $downloadable)
                 <a class="group my-2 block p-4 hover:rounded-md hover:bg-white hover:shadow-lg"
-                    role="button" wire:click="download({{ $downloadable->id }})"
+                    href="/resources/{{ $downloadable->slug }}" wire:navigate
                     wire:key="{{ $downloadable->id }}">
                     <h2
                         class="my-2 text-lg font-extrabold text-gray-900 group-hover:text-blue-900 group-hover:underline">

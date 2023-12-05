@@ -19,7 +19,9 @@
             {!! $post->content !!}
         </div>
         <span
-            class="my-2 inline-flex items-center gap-x-1.5 rounded-full border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
+            class="my-2 inline-flex items-center gap-x-1.5 rounded-full border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900"
+            href="/news/category/{{ $post->category->slug }}" role="button"
+            wire:navigate>
             {{ $post->category->name }}
         </span>
     </div>
