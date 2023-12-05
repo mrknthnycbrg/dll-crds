@@ -3,7 +3,6 @@
 namespace App\Livewire\Downloadables;
 
 use App\Models\Downloadable;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -20,14 +19,5 @@ class AllDownloadables extends Component
             ->paginate(6);
 
         return view('livewire.downloadables.all-downloadables', compact('downloadables'));
-    }
-
-    public function download($id)
-    {
-        $downloadable = Downloadable::findOrFail($id);
-
-        $downloadableFilePath = Storage::path('public/'.$downloadable->downloadable_path);
-
-        return response()->download($downloadableFilePath);
     }
 }
