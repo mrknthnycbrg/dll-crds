@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('downloadables', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable()->unique();
+            $table->string('name')->nullable();
+            $table->string('slug')->nullable()->unique();
+            $table->longText('description')->nullable()->fullText();
             $table->string('downloadable_path')->nullable();
             $table->boolean('published')->default(false);
             $table->date('date_published')->nullable();
