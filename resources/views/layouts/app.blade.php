@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>@yield('title') - {{ config('app.name', 'DLL-CRDS') }}</title>
+        <title>{{ $title ?? config('app.name', 'DLL-CRDS') }}</title>
 
         <!-- Favicons -->
         <link type="image/png" href="{{ asset('images/logo.png') }}" rel="icon"
@@ -43,7 +43,7 @@
             @if (isset($header))
                 <header>
                     <div
-                        class="mx-auto max-w-full bg-gray-50 px-4 py-8 sm:px-6 lg:px-8">
+                        class="mx-auto max-w-full space-y-2 bg-gray-50 px-4 py-8 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>

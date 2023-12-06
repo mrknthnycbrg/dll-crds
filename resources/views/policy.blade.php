@@ -1,7 +1,3 @@
-@section('title')
-    {{ 'Privacy Policy' }}
-@endsection
-
 <x-guest-layout>
     <div class="mt-6">
         <div class="flex min-h-screen flex-col items-center pt-6 sm:pt-0">

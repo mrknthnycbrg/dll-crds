@@ -1,7 +1,3 @@
-@section('title')
-    {{ 'Ask AI' }}
-@endsection
-
 <div>
     <x-slot name="header">
         <h1 class="text-3xl font-black text-gray-900">
