@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('slug')->nullable()->unique();
-            $table->string('author')->nullable();
             $table->string('image_path')->nullable();
             $table->longText('content')->nullable()->fullText();
             $table->foreignId('category_id')->nullable()->constrained()->restrictOnDelete();

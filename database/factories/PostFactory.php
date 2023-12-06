@@ -28,7 +28,6 @@ class PostFactory extends Factory
         return [
             'title' => $title = $this->faker->unique()->sentence(),
             'slug' => Str::slug($title),
-            'author' => $this->faker->name(),
             'image_path' => null,
             'content' => $this->faker->unique()->realText(1500),
             'category_id' => $this->faker->numberBetween(1, 10),
