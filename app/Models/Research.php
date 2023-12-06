@@ -54,6 +54,13 @@ class Research extends Model
         'date_submitted' => 'date',
     ];
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['department'];
+
     public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class);
@@ -80,7 +87,7 @@ class Research extends Model
 
     public function formattedAbstract()
     {
-        return Str::words(strip_tags($this->abstract), 100);
+        return Str::words(strip_tags($this->abstract), 50);
     }
 
     public function formattedDate()

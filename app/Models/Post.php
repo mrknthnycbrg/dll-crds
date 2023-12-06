@@ -32,7 +32,6 @@ class Post extends Model
     protected $fillable = [
         'title',
         'slug',
-        'author',
         'image_path',
         'content',
         'category_id',
@@ -49,6 +48,13 @@ class Post extends Model
         'published' => 'boolean',
         'date_published' => 'date',
     ];
+
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['category'];
 
     public function category(): BelongsTo
     {
