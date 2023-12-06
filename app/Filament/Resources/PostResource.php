@@ -129,10 +129,6 @@ class PostResource extends Resource
                                             ->dehydrated()
                                             ->unique(ignorable: fn ($record) => $record),
                                     ]),
-                                Forms\Components\TagsInput::make('author')
-                                    ->label('Author(s)')
-                                    ->placeholder('Add author')
-                                    ->separator(', '),
                             ]),
                     ])
                     ->columnSpan(1),
@@ -155,11 +151,6 @@ class PostResource extends Resource
                 Tables\Columns\IconColumn::make('published')
                     ->label('Published')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('author')
-                    ->label('Author(s)')
-                    ->searchable()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('category.name')
                     ->label('Category')
                     ->searchable()

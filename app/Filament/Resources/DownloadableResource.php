@@ -63,6 +63,10 @@ class DownloadableResource extends Resource
                                         'attachFiles',
                                     ])
                                     ->columnSpanFull(),
+                            ]),
+
+                        Section::make()
+                            ->schema([
                                 Forms\Components\FileUpload::make('downloadable_path')
                                     ->label('File')
                                     ->required()
