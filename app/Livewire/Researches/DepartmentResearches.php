@@ -11,14 +11,16 @@ class DepartmentResearches extends Component
 {
     use WithPagination;
 
-    public $slug;
     public $department;
+
+    public function mount($slug)
+    {
+        $this->department = Department::where('slug', $slug)
+            ->firstOrFail();
+    }
 
     public function render()
     {
-        $this->department = Department::where('slug', $this->slug)
-            ->firstOrFail();
-
         $researches = Research::where('department_id', $this->department->id)
             ->where('published', true)
             ->latest('date_submitted')

@@ -17,6 +17,9 @@ class Search extends Component
 
     public function render()
     {
+        $researches = [];
+
+        if (! empty($this->search)) {
             $researches = Research::search(trim($this->search))
                 ->query(function (Builder $query) {
                     $query->join('departments', 'researches.department_id', '=', 'departments.id')
@@ -24,6 +27,7 @@ class Search extends Component
                         ->latest('date_submitted');
                 })
                 ->paginate(6);
+        }
 
         return view('livewire.components.search', compact('researches'));
     }

@@ -8,14 +8,16 @@ use Livewire\Component;
 
 class ShowDownloadable extends Component
 {
-    public $slug;
     public $downloadable;
+
+    public function mount($slug)
+    {
+        $this->downloadable = Downloadable::where('slug', $slug)
+            ->firstOrFail();
+    }
 
     public function render()
     {
-        $this->downloadable = Downloadable::where('slug', $this->slug)
-            ->firstOrFail();
-
         return view('livewire.downloadables.show-downloadable')
             ->layout('layouts.app')
             ->title($this->downloadable->name.' - DLL-CRDS');

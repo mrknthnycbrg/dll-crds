@@ -7,15 +7,17 @@ use Livewire\Component;
 
 class ShowPost extends Component
 {
-    public $slug;
     public $post;
     public $relatedPosts;
 
+    public function mount($slug)
+    {
+        $this->post = Post::where('slug', $slug)
+            ->firstOrFail();
+    }
+
     public function render()
     {
-        $this->post = Post::where('slug', $this->slug)
-            ->firstOrFail();
-
         $this->relatedPosts = Post::where([
             ['id', '!=', $this->post->id],
             ['category_id', '=', $this->post->category_id],
@@ -27,6 +29,6 @@ class ShowPost extends Component
 
         return view('livewire.posts.show-post')
             ->layout('layouts.app')
-            ->title($this->post->title.' - DLL-CRDS');;
+            ->title($this->post->title.' - DLL-CRDS');
     }
 }

@@ -7,15 +7,17 @@ use Livewire\Component;
 
 class ShowResearch extends Component
 {
-    public $slug;
     public $research;
     public $relatedResearches;
 
+    public function mount($slug)
+    {
+        $this->research = Research::where('slug', $slug)
+            ->firstOrFail();
+    }
+
     public function render()
     {
-        $this->research = Research::where('slug', $this->slug)
-            ->firstOrFail();
-
         $this->relatedResearches = Research::where([
             ['id', '!=', $this->research->id],
             ['department_id', '=', $this->research->department_id],

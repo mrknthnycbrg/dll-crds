@@ -11,14 +11,16 @@ class CategoryPosts extends Component
 {
     use WithPagination;
 
-    public $slug;
     public $category;
+
+    public function mount($slug)
+    {
+        $this->category = Category::where('slug', $slug)
+            ->firstOrFail();
+    }
 
     public function render()
     {
-        $this->category = Category::where('slug', $this->slug)
-            ->firstOrFail();
-
         $posts = Post::where('category_id', $this->category->id)
             ->where('published', true)
             ->latest('date_published')
