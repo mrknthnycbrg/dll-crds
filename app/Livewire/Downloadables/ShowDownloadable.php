@@ -4,33 +4,26 @@ namespace App\Livewire\Downloadables;
 
 use App\Models\Downloadable;
 use Illuminate\Support\Facades\Storage;
-use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class ShowDownloadable extends Component
 {
     public $slug;
+    public $downloadable;
 
-    public function mount($slug)
-    {
-        $this->slug = $slug;
-    }
-
-    #[Layout('layouts.app')]
     public function render()
     {
-        $downloadable = Downloadable::where('slug', $this->slug)
+        $this->downloadable = Downloadable::where('slug', $this->slug)
             ->firstOrFail();
 
-        return view('livewire.downloadables.show-downloadable', compact('downloadable'));
+        return view('livewire.downloadables.show-downloadable')
+            ->layout('layouts.app')
+            ->title($this->downloadable->name.' - DLL-CRDS');
     }
 
     public function download()
     {
-        $downloadable = Downloadable::where('slug', $this->slug)
-            ->firstOrFail();
-
-        $downloadableFilePath = Storage::path('public/'.$downloadable->downloadable_path);
+        $downloadableFilePath = Storage::path('public/'.$this->downloadable->downloadable_path);
 
         return response()->download($downloadableFilePath);
     }

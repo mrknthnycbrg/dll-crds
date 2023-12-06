@@ -4,30 +4,28 @@ namespace App\Livewire\Posts;
 
 use App\Models\Category;
 use App\Models\Post;
-use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class CategoryPosts extends Component
 {
+    use WithPagination;
+
     public $slug;
+    public $category;
 
-    public function mount($slug)
-    {
-        $this->slug = $slug;
-    }
-
-    #[Layout('layouts.app')]
     public function render()
     {
-        $category = Category::where('slug', $this->slug)
+        $this->category = Category::where('slug', $this->slug)
             ->firstOrFail();
 
-        $posts = Post::with('category')
-            ->where('category_id', $category->id)
+        $posts = Post::where('category_id', $this->category->id)
             ->where('published', true)
             ->latest('date_published')
             ->paginate(6);
 
-        return view('livewire.posts.category-posts', compact('category', 'posts'));
+        return view('livewire.posts.category-posts', ['category' => $this->category, 'posts' => $posts])
+            ->layout('layouts.app')
+            ->title($this->category->name.' - DLL-CRDS');
     }
 }

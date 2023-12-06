@@ -3,36 +3,31 @@
 namespace App\Livewire\Researches;
 
 use App\Models\Research;
-use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class ShowResearch extends Component
 {
     public $slug;
+    public $research;
+    public $relatedResearches;
 
-    public function mount($slug)
-    {
-        $this->slug = $slug;
-    }
-
-    #[Layout('layouts.app')]
     public function render()
     {
-        $research = Research::where('slug', $this->slug)
-            ->with('department')
+        $this->research = Research::where('slug', $this->slug)
             ->firstOrFail();
 
-        $relatedResearches = Research::with('department')
-            ->where([
-                ['id', '!=', $research->id],
-                ['department_id', '=', $research->department_id],
-                ['published', '=', true],
-            ])
+        $this->relatedResearches = Research::where([
+            ['id', '!=', $this->research->id],
+            ['department_id', '=', $this->research->department_id],
+            ['published', '=', true],
+        ])
             ->latest('date_submitted')
             ->take(3)
             ->get();
 
-        return view('livewire.researches.show-research', compact('research', 'relatedResearches'));
+        return view('livewire.researches.show-research')
+            ->layout('layouts.app')
+            ->title($this->research->title.' - DLL-CRDS');
     }
 
     public function view()

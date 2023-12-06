@@ -4,26 +4,33 @@ namespace App\Livewire\Home;
 
 use App\Models\Post;
 use App\Models\Research;
-use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class HomePage extends Component
 {
-    #[Layout('layouts.app')]
+    public $latestPost;
+    public $otherPosts;
+    public $latestResearches;
+
     public function render()
     {
-        $latestPosts = Post::with('category')
-            ->where('published', true)
+        $this->latestPost = Post::where('published', true)
             ->latest('date_published')
-            ->take(3)
+            ->first();
+
+        $this->otherPosts = Post::where('published', true)
+            ->latest('date_published')
+            ->skip(1)
+            ->take(2)
             ->get();
 
-        $latestResearches = Research::with('department')
-            ->where('published', true)
+        $this->latestResearches = Research::where('published', true)
             ->latest('date_submitted')
             ->take(3)
             ->get();
 
-        return view('livewire.home.home-page', compact('latestPosts', 'latestResearches'));
+        return view('livewire.home.home-page')
+            ->layout('layouts.app')
+            ->title('Home - DLL-CRDS');
     }
 }

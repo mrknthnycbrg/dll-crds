@@ -2,21 +2,13 @@
 
 namespace App\Livewire\Ask;
 
-use Livewire\Attributes\Layout;
 use Livewire\Component;
 use OpenAI\Laravel\Facades\OpenAI;
 
 class AskPage extends Component
 {
     public $input = '';
-
     public $output = '';
-
-    #[Layout('layouts.app')]
-    public function render()
-    {
-        return view('livewire.ask.ask-page');
-    }
 
     public function response()
     {
@@ -29,5 +21,12 @@ class AskPage extends Component
 
             $this->output = $response['choices'][0]['text'];
         }
+    }
+
+    public function render()
+    {
+        return view('livewire.ask.ask-page')
+            ->layout('layouts.app')
+            ->title('Ask AI - DLL-CRDS');
     }
 }
