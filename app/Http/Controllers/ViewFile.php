@@ -11,8 +11,6 @@ class ViewFile extends Controller
     {
         $research = Research::where('slug', $slug)->firstOrFail();
 
-        $pdfFilePath = Storage::path('public/'.$research->pdf_path);
-
-        return response()->file($pdfFilePath);
+        return response()->file(Storage::path('public/'.$research->pdf_path));
     }
 }
