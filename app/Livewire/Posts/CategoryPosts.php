@@ -15,8 +15,7 @@ class CategoryPosts extends Component
 
     public function mount($slug)
     {
-        $this->category = Category::where('slug', $slug)
-            ->firstOrFail();
+        $this->category = Category::where('slug', $slug)->firstOrFail();
     }
 
     public function render()
@@ -26,7 +25,7 @@ class CategoryPosts extends Component
             ->latest('date_published')
             ->paginate(6);
 
-        return view('livewire.posts.category-posts', ['category' => $this->category, 'posts' => $posts])
+        return view('livewire.posts.category-posts', compact('posts'))
             ->layout('layouts.app')
             ->title($this->category->name.' - DLL-CRDS');
     }

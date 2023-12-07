@@ -12,8 +12,7 @@ class ShowDownloadable extends Component
 
     public function mount($slug)
     {
-        $this->downloadable = Downloadable::where('slug', $slug)
-            ->firstOrFail();
+        $this->downloadable = Downloadable::where('slug', $slug)->firstOrFail();
     }
 
     public function render()
@@ -25,8 +24,6 @@ class ShowDownloadable extends Component
 
     public function download()
     {
-        $downloadableFilePath = Storage::path('public/'.$this->downloadable->downloadable_path);
-
-        return response()->download($downloadableFilePath);
+        return response()->download(Storage::path('public/'.$this->downloadable->downloadable_path));
     }
 }

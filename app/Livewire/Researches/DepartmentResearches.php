@@ -15,8 +15,7 @@ class DepartmentResearches extends Component
 
     public function mount($slug)
     {
-        $this->department = Department::where('slug', $slug)
-            ->firstOrFail();
+        $this->department = Department::where('slug', $slug)->firstOrFail();
     }
 
     public function render()
@@ -26,7 +25,7 @@ class DepartmentResearches extends Component
             ->latest('date_submitted')
             ->paginate(6);
 
-        return view('livewire.researches.department-researches', ['department' => $this->department, 'researches' => $researches])
+        return view('livewire.researches.department-researches', compact('researches'))
             ->layout('layouts.app')
             ->title($this->department->name.' - DLL-CRDS');
     }

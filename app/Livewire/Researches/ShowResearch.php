@@ -8,17 +8,15 @@ use Livewire\Component;
 class ShowResearch extends Component
 {
     public $research;
-    public $relatedResearches;
 
     public function mount($slug)
     {
-        $this->research = Research::where('slug', $slug)
-            ->firstOrFail();
+        $this->research = Research::where('slug', $slug)->firstOrFail();
     }
 
     public function render()
     {
-        $this->relatedResearches = Research::where([
+        $relatedResearches = Research::where([
             ['id', '!=', $this->research->id],
             ['department_id', '=', $this->research->department_id],
             ['published', '=', true],
@@ -27,13 +25,13 @@ class ShowResearch extends Component
             ->take(3)
             ->get();
 
-        return view('livewire.researches.show-research')
+        return view('livewire.researches.show-research', compact('relatedResearches'))
             ->layout('layouts.app')
             ->title($this->research->title.' - DLL-CRDS');
     }
 
     public function view()
     {
-        $this->redirect((route('view-file', ['slug' => $this->slug])));
+        $this->redirectRoute('view-file', ['slug' => $this->research->slug]);
     }
 }
