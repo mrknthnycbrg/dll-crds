@@ -23,6 +23,7 @@ class Search extends Component
             $researches = Research::search(trim($this->search))
                 ->query(function (Builder $query) {
                     $query->join('departments', 'researches.department_id', '=', 'departments.id')
+                        ->select('researches.*', 'departments.id as department_id', 'departments.name as department_name')
                         ->where('published', true)
                         ->latest('date_submitted');
                 })
