@@ -126,20 +126,10 @@ class NumberResource extends Resource
             ->persistSortInSession();
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListNumbers::route('/'),
-            'create' => Pages\CreateNumber::route('/create'),
-            'view' => Pages\ViewNumber::route('/{record}'),
-            'edit' => Pages\EditNumber::route('/{record}/edit'),
+            'index' => Pages\ManageNumbers::route('/'),
         ];
     }
 

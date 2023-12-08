@@ -127,20 +127,10 @@ class DepartmentResource extends Resource
             ->persistSortInSession();
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListDepartments::route('/'),
-            'create' => Pages\CreateDepartment::route('/create'),
-            'view' => Pages\ViewDepartment::route('/{record}'),
-            'edit' => Pages\EditDepartment::route('/{record}/edit'),
+            'index' => Pages\ManageDepartments::route('/'),
         ];
     }
 
