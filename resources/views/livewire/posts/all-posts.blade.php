@@ -1,6 +1,6 @@
 <div>
     <x-slot name="header">
-        <h1 class="text-3xl font-black text-gray-900">
+        <h1 class="text-4xl font-black text-gray-900">
             {{ 'News' }}
         </h1>
     </x-slot>
@@ -16,7 +16,7 @@
                             src="{{ $post->formattedImage() }}">
                     @endif
                     <span
-                        class="inline-flex items-center gap-x-1.5 rounded-full border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
+                        class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
                         {{ $post->category->name }}
                     </span>
                     <h2
@@ -31,7 +31,7 @@
             @endforeach
         </div>
 
-        <div class="space-y-2 py-8">
+        <div class="space-y-2 pt-8">
             {{ $posts->links() }}
         </div>
     </div>

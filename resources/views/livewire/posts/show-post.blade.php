@@ -1,7 +1,7 @@
 <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
     <div
         class="mx-auto mb-5 max-w-4xl space-y-4 rounded-md bg-white p-5 shadow-lg">
-        <h1 class="text-3xl font-black text-gray-900">
+        <h1 class="text-4xl font-black text-gray-900">
             {{ $post->title }}
         </h1>
         <p class="text-sm font-medium text-gray-700">
@@ -14,7 +14,7 @@
             {!! $post->content !!}
         </div>
         <span
-            class="inline-flex items-center gap-x-1.5 rounded-full border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900 hover:bg-blue-900 hover:text-gray-100"
+            class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900 hover:bg-blue-900 hover:text-gray-100"
             href="{{ route('category-posts', ['slug' => $post->category->slug]) }}"
             role="button" wire:navigate>
             {{ $post->category->name }}
@@ -22,7 +22,7 @@
     </div>
 
     <div class="flex items-center justify-between py-8">
-        <h1 class="text-3xl font-black text-gray-900">
+        <h1 class="text-4xl font-black text-gray-900">
             {{ 'Related News' }}
         </h1>
     </div>
@@ -37,7 +37,7 @@
                         src="{{ $post->formattedImage() }}">
                 @endif
                 <span
-                    class="inline-flex items-center gap-x-1.5 rounded-full border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
+                    class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
                     {{ $post->category->name }}
                 </span>
                 <h2

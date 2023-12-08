@@ -3,9 +3,9 @@
         <livewire:components.search />
     </x-slot>
 
-    <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-full px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between space-y-2 py-8">
-            <h1 class="text-3xl font-black text-gray-900">
+            <h1 class="text-4xl font-black text-gray-900">
                 {{ 'Latest News' }}
             </h1>
             <a class="text-xl font-bold text-blue-900 hover:underline"
@@ -25,17 +25,19 @@
                             src="{{ $latestPost->formattedImage() }}">
                     @endif
                     <span
-                        class="inline-flex items-center gap-x-1.5 rounded-full border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
+                        class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900 md:text-sm lg:text-base">
                         {{ $latestPost->category->name }}
                     </span>
                     <h2
-                        class="text-xl font-bold text-blue-900 group-hover:underline">
+                        class="text-xl font-bold text-blue-900 group-hover:underline md:text-2xl lg:text-3xl">
                         {{ $latestPost->title }}
                     </h2>
-                    <p class="text-xs font-thin text-gray-700">
+                    <p
+                        class="text-xs font-thin text-gray-700 md:text-sm lg:text-base">
                         {{ $latestPost->formattedDate() }}
                     </p>
-                    <p class="text-sm font-light text-gray-700">
+                    <p
+                        class="text-sm font-light text-gray-700 md:text-base lg:text-lg">
                         {{ $latestPost->formattedContent() }}
                     </p>
                 </a>
@@ -51,7 +53,7 @@
                                 src="{{ $post->formattedImage() }}">
                         @endif
                         <span
-                            class="inline-flex items-center gap-x-1.5 rounded-full border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
+                            class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
                             {{ $post->category->name }}
                         </span>
                         <h2
@@ -68,9 +70,11 @@
                 @endforeach
             </div>
         </div>
+    </div>
 
+    <div class="mx-auto max-w-full px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between space-y-2 py-8">
-            <h1 class="text-3xl font-black text-gray-900">
+            <h1 class="text-4xl font-black text-gray-900">
                 {{ 'Latest Researches' }}
             </h1>
             <a class="text-xl font-bold text-blue-900 hover:underline"
@@ -86,12 +90,14 @@
                     href="{{ route('show-research', ['slug' => $research->slug]) }}"
                     wire:navigate wire:key="{{ $research->id }}">
                     <span
-                        class="inline-flex items-center gap-x-1.5 rounded-full border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
+                        class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
                         {{ $research->department->name }}
                     </span>
                     <h2
                         class="text-xl font-bold text-blue-900 group-hover:underline">
                         {{ $research->title }}</h2>
+                    <p class="text-base font-medium text-gray-700">
+                        {{ $research->author }}</p>
                     <p class="text-xs font-thin text-gray-700">
                         {{ $research->formattedDate() }}</p>
                     <p class="text-sm font-light text-gray-700">

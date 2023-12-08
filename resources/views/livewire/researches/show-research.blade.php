@@ -1,12 +1,12 @@
 <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
     <div
         class="mx-auto mb-5 max-w-4xl space-y-4 rounded-md bg-white p-5 shadow-lg">
-        <h1 class="text-3xl font-black text-gray-900">
+        <h1 class="text-4xl font-black text-gray-900">
             {{ $research->title }}
         </h1>
         <span class="font-extrabold text-gray-900">{{ 'Department:' }}</span>
         <span
-            class="inline-flex items-center gap-x-1.5 rounded-full border border-blue-900 px-3 py-1.5 text-xs text-blue-900 hover:bg-blue-900 hover:text-gray-100"
+            class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs text-blue-900 hover:bg-blue-900 hover:text-gray-100"
             href="{{ route('department-researches', ['slug' => $research->department->slug]) }}"
             role="button" wire:navigate>
             {{ $research->department->name }}
@@ -43,7 +43,7 @@
     </div>
 
     <div class="flex items-center justify-between py-8">
-        <h1 class="text-3xl font-black text-gray-900">
+        <h1 class="text-4xl font-black text-gray-900">
             {{ 'Related Researches' }}
         </h1>
     </div>
@@ -54,12 +54,14 @@
                 href="{{ route('show-research', ['slug' => $research->slug]) }}"
                 wire:navigate wire:key="{{ $research->id }}">
                 <span
-                    class="inline-flex items-center gap-x-1.5 rounded-full border border-blue-900 px-3 py-1.5 text-xs text-blue-900">
+                    class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs text-blue-900">
                     {{ $research->department->name }}
                 </span>
                 <h2
                     class="text-xl font-bold text-blue-900 group-hover:underline">
                     {{ $research->title }}</h2>
+                <p class="text-base font-medium text-gray-700">
+                    {{ $research->author }}</p>
                 <p class="text-xs font-thin text-gray-700">
                     {{ $research->formattedDate() }}</p>
                 <p class="text-sm font-light text-gray-700">

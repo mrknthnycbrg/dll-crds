@@ -1,6 +1,6 @@
 <div>
     <x-slot name="header">
-        <h1 class="text-3xl font-black text-gray-900">
+        <h1 class="text-4xl font-black text-gray-900">
             {{ 'Resources' }}
         </h1>
     </x-slot>
@@ -21,7 +21,7 @@
             @endforeach
         </div>
 
-        <div class="space-y-2 py-8">
+        <div class="space-y-2 pt-8">
             {{ $downloadables->links() }}
         </div>
     </div>
