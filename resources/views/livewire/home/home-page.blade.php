@@ -17,11 +17,11 @@
 
         <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
             @if ($latestPost)
-                <a class="group block space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white md:col-span-2"
+                <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white md:col-span-2"
                     href="{{ route('show-post', ['slug' => $latestPost->slug]) }}"
                     wire:navigate wire:key="{{ $latestPost->id }}">
                     @if ($latestPost->image_path)
-                        <img class="mx-auto h-auto w-full rounded-md object-contain"
+                        <img class="mx-auto aspect-video w-full rounded-md object-cover"
                             src="{{ $latestPost->formattedImage() }}">
                     @endif
                     <span
@@ -43,17 +43,17 @@
 
             <div class="grid gap-8 md:col-span-1 md:grid-cols-1">
                 @foreach ($otherPosts as $post)
-                    <a class="group block space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white"
+                    <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white"
                         href="{{ route('show-post', ['slug' => $post->slug]) }}"
                         wire:navigate wire:key="{{ $post->id }}">
+                        @if ($post->image_path)
+                            <img class="mx-auto aspect-video w-full rounded-md object-cover"
+                                src="{{ $post->formattedImage() }}">
+                        @endif
                         <span
                             class="inline-flex items-center gap-x-1.5 rounded-full border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
                             {{ $post->category->name }}
                         </span>
-                        @if ($post->image_path)
-                            <img class="mx-auto h-auto w-full rounded-md object-cover"
-                                src="{{ $post->formattedImage() }}">
-                        @endif
                         <h2
                             class="text-xl font-bold text-blue-900 group-hover:underline">
                             {{ $post->title }}
@@ -82,7 +82,7 @@
 
         <div class="grid grid-cols-1 gap-8">
             @foreach ($latestResearches as $research)
-                <a class="group block space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white"
+                <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white"
                     href="{{ route('show-research', ['slug' => $research->slug]) }}"
                     wire:navigate wire:key="{{ $research->id }}">
                     <span

@@ -1,12 +1,13 @@
 <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
-    <div class="mb-5 space-y-4 rounded-md bg-white p-5 shadow-lg">
+    <div
+        class="mx-auto mb-5 max-w-4xl space-y-4 rounded-md bg-white p-5 shadow-lg">
         <h1 class="text-3xl font-black text-gray-900">
             {{ $post->title }}
         </h1>
         <p class="text-sm font-medium text-gray-700">
             {{ $post->formattedDate() }}</p>
         @if ($post->image_path)
-            <img class="mx-auto h-auto w-full max-w-4xl rounded-md object-contain"
+            <img class="mx-auto aspect-video w-full rounded-md object-cover"
                 src="{{ $post->formattedImage() }}">
         @endif
         <div class="prose max-w-none">
@@ -28,11 +29,11 @@
 
     <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
         @foreach ($relatedPosts as $post)
-            <a class="group block space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white"
+            <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white"
                 href="{{ route('show-post', ['slug' => $post->slug]) }}"
                 wire:navigate wire:key="{{ $post->id }}">
                 @if ($post->image_path)
-                    <img class="mx-auto h-auto w-full rounded-md object-cover"
+                    <img class="mx-auto aspect-video w-full rounded-md object-cover"
                         src="{{ $post->formattedImage() }}">
                 @endif
                 <span

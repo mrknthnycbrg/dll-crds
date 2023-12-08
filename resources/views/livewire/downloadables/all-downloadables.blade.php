@@ -8,7 +8,7 @@
     <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
             @foreach ($downloadables as $downloadable)
-                <a class="group block space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white"
+                <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white"
                     href="{{ route('show-downloadable', ['slug' => $downloadable->slug]) }}"
                     wire:navigate wire:key="{{ $downloadable->id }}">
                     <h2

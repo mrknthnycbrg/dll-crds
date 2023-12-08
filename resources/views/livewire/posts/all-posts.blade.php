@@ -8,11 +8,11 @@
     <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
             @foreach ($posts as $post)
-                <a class="group block space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white"
+                <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white"
                     href="{{ route('show-post', ['slug' => $post->slug]) }}"
                     wire:navigate wire:key="{{ $post->id }}">
                     @if ($post->image_path)
-                        <img class="mx-auto h-auto w-full rounded-md object-cover"
+                        <img class="mx-auto aspect-video w-full rounded-md object-cover"
                             src="{{ $post->formattedImage() }}">
                     @endif
                     <span

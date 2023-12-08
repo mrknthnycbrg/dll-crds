@@ -1,9 +1,14 @@
 <div>
     <div class="flex justify-center">
-        <div class="w-full sm:w-full md:w-2/3 lg:w-1/3">
-            <x-input class="block w-full" type="text"
-                wire:model.live.debounce="search"
+        <div
+            class="relative flex w-full items-center sm:w-full md:w-2/3 lg:w-1/3">
+            <x-input class="block w-full pl-10 placeholder-gray-500"
+                type="text" wire:model.live.debounce="search"
                 placeholder="Explore researches" />
+            <div
+                class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                <x-search-icon class="block h-6 w-auto text-gray-500" />
+            </div>
         </div>
     </div>
 
@@ -25,7 +30,7 @@
 
         <div class="grid grid-cols-1 gap-8">
             @foreach ($researches as $research)
-                <a class="group block space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white"
+                <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white"
                     href="{{ route('show-research', ['slug' => $research->slug]) }}"
                     wire:navigate wire:key="{{ $research->id }}">
                     <span

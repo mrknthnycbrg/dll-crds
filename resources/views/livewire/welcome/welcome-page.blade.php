@@ -5,12 +5,14 @@
             {{ 'College Research and Development Services' }}
         </h1>
     </div>
+
     <div class="mx-auto max-w-full text-center">
         <p
             class="block text-xl font-bold text-gray-100 sm:text-2xl md:text-3xl lg:text-4xl">
             {{ 'Dalubhasaan ng Lungsod ng Lucena' }}
         </p>
     </div>
+
     <div class="mx-auto max-w-full text-center">
         <p
             class="block text-xs font-medium text-gray-100 sm:text-sm md:text-base lg:text-lg">

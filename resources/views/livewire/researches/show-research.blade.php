@@ -1,5 +1,6 @@
 <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
-    <div class="mb-5 space-y-4 rounded-md bg-white p-5 shadow-lg">
+    <div
+        class="mx-auto mb-5 max-w-4xl space-y-4 rounded-md bg-white p-5 shadow-lg">
         <h1 class="text-3xl font-black text-gray-900">
             {{ $research->title }}
         </h1>
@@ -31,9 +32,9 @@
         </p>
         <p class="text-base font-extrabold text-gray-900">{{ 'Abstract:' }}
         </p>
-        <div class="prose max-w-none">
-            {!! $research->abstract !!}
-        </div>
+        <p class="text-base text-gray-700">
+            {{ $research->abstract }}
+        </p>
         @if ($research->pdf_path)
             <x-button wire:click="view">
                 {{ 'View' }}
@@ -49,7 +50,7 @@
 
     <div class="grid grid-cols-1 gap-8">
         @foreach ($relatedResearches as $research)
-            <a class="group block space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white"
+            <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white"
                 href="{{ route('show-research', ['slug' => $research->slug]) }}"
                 wire:navigate wire:key="{{ $research->id }}">
                 <span
@@ -67,5 +68,4 @@
             </a>
         @endforeach
     </div>
-
 </div>
