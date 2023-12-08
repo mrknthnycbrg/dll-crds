@@ -56,13 +56,10 @@ class DownloadableResource extends Resource
                                     ->disabled()
                                     ->dehydrated()
                                     ->unique(ignorable: fn ($record) => $record),
-                                Forms\Components\RichEditor::make('description')
+                                Forms\Components\Textarea::make('description')
                                     ->label('Description')
                                     ->placeholder('Enter description')
-                                    ->disableToolbarButtons([
-                                        'attachFiles',
-                                    ])
-                                    ->columnSpanFull(),
+                                    ->autosize(),
                             ]),
 
                         Section::make()

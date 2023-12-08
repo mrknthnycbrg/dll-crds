@@ -57,13 +57,10 @@ class ResearchResource extends Resource
                                     ->disabled()
                                     ->dehydrated()
                                     ->unique(ignorable: fn ($record) => $record),
-                                Forms\Components\RichEditor::make('abstract')
+                                Forms\Components\Textarea::make('abstract')
                                     ->label('Abstract')
                                     ->placeholder('Enter abstract')
-                                    ->disableToolbarButtons([
-                                        'attachFiles',
-                                    ])
-                                    ->columnSpanFull(),
+                                    ->autosize(),
                             ]),
 
                         Section::make()

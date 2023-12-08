@@ -93,12 +93,7 @@ class PostResource extends Resource
                             ->schema([
                                 Forms\Components\Toggle::make('published')
                                     ->label('Published')
-                                    ->default(false)
-                                    ->live(onBlur: true)
-                                    ->afterStateUpdated(function (Get $get, Set $set) {
-                                        $title = $get('title');
-                                        $set('slug', Str::slug($title));
-                                    }),
+                                    ->default(false),
                                 Forms\Components\DatePicker::make('date_published')
                                     ->label('Date Published')
                                     ->default(now())
