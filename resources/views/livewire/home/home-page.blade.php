@@ -20,14 +20,14 @@
                 <a class="group block space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white md:col-span-2"
                     href="{{ route('show-post', ['slug' => $latestPost->slug]) }}"
                     wire:navigate wire:key="{{ $latestPost->id }}">
-                    <span
-                        class="inline-flex items-center gap-x-1.5 rounded-full border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
-                        {{ $latestPost->category->name }}
-                    </span>
                     @if ($latestPost->image_path)
                         <img class="mx-auto h-auto w-full rounded-md object-contain"
                             src="{{ $latestPost->formattedImage() }}">
                     @endif
+                    <span
+                        class="inline-flex items-center gap-x-1.5 rounded-full border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
+                        {{ $latestPost->category->name }}
+                    </span>
                     <h2
                         class="text-xl font-bold text-blue-900 group-hover:underline">
                         {{ $latestPost->title }}

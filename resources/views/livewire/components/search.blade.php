@@ -11,11 +11,11 @@
         <div class="space-y-2 py-8">
             @if ($researches->count() > 0)
                 <h1 class="text-3xl font-black text-gray-900">
-                    {{ 'Researches' }}
+                    {{ 'Search Results' }}
                 </h1>
             @else
                 <h1 class="text-3xl font-black text-gray-900">
-                    {{ 'Researches' }}
+                    {{ 'Search Results' }}
                 </h1>
                 <p class="text-xl font-bold text-gray-700">
                     {{ 'No results' }}

@@ -31,14 +31,14 @@
             <a class="group block space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white"
                 href="{{ route('show-post', ['slug' => $post->slug]) }}"
                 wire:navigate wire:key="{{ $post->id }}">
-                <span
-                    class="inline-flex items-center gap-x-1.5 rounded-full border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
-                    {{ $post->category->name }}
-                </span>
                 @if ($post->image_path)
                     <img class="mx-auto h-auto w-full rounded-md object-cover"
                         src="{{ $post->formattedImage() }}">
                 @endif
+                <span
+                    class="inline-flex items-center gap-x-1.5 rounded-full border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
+                    {{ $post->category->name }}
+                </span>
                 <h2
                     class="text-xl font-bold text-blue-900 group-hover:underline">
                     {{ $post->title }}</h2>
