@@ -9,14 +9,14 @@
         <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
             @forelse ($downloadables as $downloadable)
                 <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-blue-50"
-                    href="{{ route('show-downloadable', ['slug' => $downloadable->slug]) }}"
-                    wire:navigate wire:key="{{ $downloadable->id }}">
-                    <h2
-                        class="text-xl font-bold text-blue-900 group-hover:underline">
+                    href="{{ route('show-downloadable', ['slug' => $downloadable->slug]) }}" wire:navigate
+                    wire:key="{{ $downloadable->id }}">
+                    <h2 class="text-xl font-bold text-blue-900 group-hover:underline">
                         {{ $downloadable->name }}
                     </h2>
                     <p class="text-xs font-thin text-gray-700">
-                        {{ $downloadable->formattedDate() }}</p>
+                        {{ $downloadable->formattedDate() }}
+                    </p>
                 </a>
             @empty
                 <p class="text-xl font-bold text-gray-700">

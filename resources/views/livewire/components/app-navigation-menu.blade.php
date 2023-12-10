@@ -5,11 +5,10 @@
             <div class="flex h-16 justify-between">
                 <!-- Logo -->
                 <div class="flex shrink-0 items-center">
-                    <a class="flex items-center" href="{{ route('welcome') }}"
-                        wire:navigate>
+                    <a class="flex items-center" href="{{ route('welcome') }}" wire:navigate>
                         <x-application-logo class="block h-10 w-auto" />
-                        <span
-                            class="ml-3 text-xl font-black text-gray-100">{{ 'DLL-CRDS' }}
+                        <span class="ml-3 text-xl font-black text-gray-100">
+                            {{ 'DLL-CRDS' }}
                         </span>
                     </a>
                 </div>
@@ -17,24 +16,19 @@
                 <div class="flex">
                     <!-- Navigation Links -->
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link href="{{ route('home') }}" wire:navigate
-                            :active="request()->routeIs('home')">
+                        <x-nav-link href="{{ route('home') }}" wire:navigate :active="request()->routeIs('home')">
                             {{ 'Home' }}
                         </x-nav-link>
-                        <x-nav-link href="{{ route('all-posts') }}"
-                            wire:navigate :active="request()->routeIs('all-posts')">
+                        <x-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs('all-posts')">
                             {{ 'News' }}
                         </x-nav-link>
-                        <x-nav-link href="{{ route('all-researches') }}"
-                            wire:navigate :active="request()->routeIs('all-researches')">
+                        <x-nav-link href="{{ route('all-researches') }}" wire:navigate :active="request()->routeIs('all-researches')">
                             {{ 'Researches' }}
                         </x-nav-link>
-                        <x-nav-link href="{{ route('all-downloadables') }}"
-                            wire:navigate :active="request()->routeIs('all-downloadables')">
+                        <x-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs('all-downloadables')">
                             {{ 'Resources' }}
                         </x-nav-link>
-                        <x-nav-link href="{{ route('ask') }}" wire:navigate
-                            :active="request()->routeIs('ask')">
+                        <x-nav-link href="{{ route('ask') }}" wire:navigate :active="request()->routeIs('ask')">
                             {{ 'Ask AI' }}
                         </x-nav-link>
                     </div>
@@ -50,25 +44,19 @@
                             </x-slot>
                             <x-slot name="content">
                                 <!-- Account Management -->
-                                <div
-                                    class="block px-4 py-2 text-xs text-gray-500">
+                                <div class="block px-4 py-2 text-xs text-gray-500">
                                     {{ 'Manage Account' }}
                                 </div>
-                                <x-dropdown-link
-                                    href="{{ route('profile.show') }}"
-                                    wire:navigate>
+                                <x-dropdown-link href="{{ route('profile.show') }}" wire:navigate>
                                     {{ 'Profile' }}
                                 </x-dropdown-link>
                                 <div class="border-t border-gray-100">
                                 </div>
                                 <!-- Authentication -->
-                                <form method="POST"
-                                    action="{{ route('logout') }}" x-data>
+                                <form method="POST" action="{{ route('logout') }}" x-data>
                                     @csrf
 
-                                    <x-dropdown-link
-                                        href="{{ route('logout') }}"
-                                        @click.prevent="$root.submit();">
+                                    <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
                                         {{ 'Log Out' }}
                                     </x-dropdown-link>
                                 </form>
@@ -89,27 +77,21 @@
         </div>
 
         <!-- Responsive Navigation Menu -->
-        <div class="hidden sm:hidden"
-            :class="{ 'block': open, 'hidden': !open }">
+        <div class="hidden sm:hidden" :class="{ 'block': open, 'hidden': !open }">
             <div class="space-y-1 pb-3 pt-2">
-                <x-responsive-nav-link href="{{ route('home') }}" wire:navigate
-                    :active="request()->routeIs('home')">
+                <x-responsive-nav-link href="{{ route('home') }}" wire:navigate :active="request()->routeIs('home')">
                     {{ 'Home' }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link href="{{ route('all-posts') }}"
-                    wire:navigate :active="request()->routeIs('all-posts')">
+                <x-responsive-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs('all-posts')">
                     {{ 'News' }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link href="{{ route('all-researches') }}"
-                    wire:navigate :active="request()->routeIs('all-researches')">
+                <x-responsive-nav-link href="{{ route('all-researches') }}" wire:navigate :active="request()->routeIs('all-researches')">
                     {{ 'Researches' }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link href="{{ route('all-downloadables') }}"
-                    wire:navigate :active="request()->routeIs('all-downloadables')">
+                <x-responsive-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs('all-downloadables')">
                     {{ 'Resources' }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link href="{{ route('ask') }}" wire:navigate
-                    :active="request()->routeIs('ask')">
+                <x-responsive-nav-link href="{{ route('ask') }}" wire:navigate :active="request()->routeIs('ask')">
                     {{ 'Ask AI' }}
                 </x-responsive-nav-link>
             </div>
@@ -129,16 +111,14 @@
 
                 <div class="mt-3 space-y-1">
                     <!-- Account Management -->
-                    <x-responsive-nav-link href="{{ route('profile.show') }}"
-                        wire:navigate :active="request()->routeIs('profile.show')">
+                    <x-responsive-nav-link href="{{ route('profile.show') }}" wire:navigate :active="request()->routeIs('profile.show')">
                         {{ 'Profile' }}
                     </x-responsive-nav-link>
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}" x-data>
                         @csrf
 
-                        <x-responsive-nav-link href="{{ route('logout') }}"
-                            @click.prevent="$root.submit();">
+                        <x-responsive-nav-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
                             {{ 'Log Out' }}
                         </x-responsive-nav-link>
                     </form>

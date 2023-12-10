@@ -11,8 +11,7 @@
         <!-- First Name -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="first_name" value="{{ 'First Name' }}" />
-            <x-input class="mt-1 block w-full" id="first_name" type="text"
-                wire:model="state.first_name" required
+            <x-input class="mt-1 block w-full" id="first_name" type="text" wire:model="state.first_name" required
                 autocomplete="first_name" />
             <x-input-error class="mt-2" for="first_name" />
         </div>
@@ -20,16 +19,15 @@
         <!-- Middle Name -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="middle_name" value="{{ 'Middle Name (Optional)' }}" />
-            <x-input class="mt-1 block w-full" id="middle_name" type="text"
-                wire:model="state.middle_name" autocomplete="middle_name" />
+            <x-input class="mt-1 block w-full" id="middle_name" type="text" wire:model="state.middle_name"
+                autocomplete="middle_name" />
             <x-input-error class="mt-2" for="middle_name" />
         </div>
 
         <!-- Last Name -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="last_name" value="{{ 'Last Name' }}" />
-            <x-input class="mt-1 block w-full" id="last_name" type="text"
-                wire:model="state.last_name" required
+            <x-input class="mt-1 block w-full" id="last_name" type="text" wire:model="state.last_name" required
                 autocomplete="last_name" />
             <x-input-error class="mt-2" for="last_name" />
         </div>
@@ -37,18 +35,18 @@
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="email" value="{{ 'Email' }}" />
-            <x-input class="mt-1 block w-full" id="email" type="email"
-                wire:model="state.email" required autocomplete="username" />
+            <x-input class="mt-1 block w-full" id="email" type="email" wire:model="state.email" required
+                autocomplete="username" />
             <x-input-error class="mt-2" for="email" />
 
-            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && !$this->user->hasVerifiedEmail())
+            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) &&
+                    !$this->user->hasVerifiedEmail())
                 <p class="mt-2 text-sm">
                     {{ 'Your email address is unverified.' }}
 
                     <button
                         class="rounded-md text-sm text-gray-700 underline hover:text-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2"
-                        type="button"
-                        wire:click.prevent="sendEmailVerification">
+                        type="button" wire:click.prevent="sendEmailVerification">
                         {{ 'Click here to re-send the verification email.' }}
                     </button>
                 </p>

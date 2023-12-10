@@ -95,7 +95,7 @@ class AdminPanelProvider extends PanelProvider
                     }),
             ])
             ->resources([
-                config('filament-logger.activity_resource')
+                config('filament-logger.activity_resource'),
             ]);
     }
 }

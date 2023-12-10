@@ -5,8 +5,7 @@
                 <x-application-logo class="block h-28 w-auto" />
             </div>
 
-            <div
-                class="prose mt-6 w-full overflow-hidden bg-white p-6 shadow-md sm:rounded-lg">
+            <div class="prose mt-6 w-full overflow-hidden bg-white p-6 shadow-md sm:rounded-lg">
                 {!! $terms !!}
             </div>
         </div>

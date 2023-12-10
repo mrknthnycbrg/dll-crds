@@ -21,9 +21,8 @@
 
             <div class="block">
                 <x-label for="email" value="{{ 'Email' }}" />
-                <x-input class="mt-1 block w-full" id="email" name="email"
-                    type="email" :value="old('email')" required autofocus
-                    autocomplete="username" />
+                <x-input class="mt-1 block w-full" id="email" name="email" type="email" :value="old('email')"
+                    required autofocus autocomplete="username" />
             </div>
 
             <div class="mt-4 flex items-center justify-end">

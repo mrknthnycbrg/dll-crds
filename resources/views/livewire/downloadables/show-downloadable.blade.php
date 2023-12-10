@@ -4,7 +4,8 @@
             {{ $downloadable->name }}
         </h1>
         <p class="text-sm font-medium text-gray-700">
-            {{ $downloadable->formattedDate() }}</p>
+            {{ $downloadable->formattedDate() }}
+        </p>
         <p class="text-base text-gray-700">
             {{ $downloadable->description }}
         </p>

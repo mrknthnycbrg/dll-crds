@@ -8,6 +8,7 @@ use OpenAI\Laravel\Facades\OpenAI;
 class AskPage extends Component
 {
     public $input = '';
+
     public $output = '';
 
     public function response()

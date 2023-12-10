@@ -53,10 +53,8 @@
                     <div class="mt-4">
                         <x-label for="code" value="{{ 'Code' }}" />
 
-                        <x-input class="mt-1 block w-1/2" id="code"
-                            name="code" type="text" inputmode="numeric"
-                            autofocus autocomplete="one-time-code"
-                            wire:model="code"
+                        <x-input class="mt-1 block w-1/2" id="code" name="code" type="text"
+                            inputmode="numeric" autofocus autocomplete="one-time-code" wire:model="code"
                             wire:keydown.enter="confirmTwoFactorAuthentication" />
 
                         <x-input-error class="mt-2" for="code" />
@@ -71,8 +69,7 @@
                     </p>
                 </div>
 
-                <div
-                    class="mt-4 grid max-w-xl gap-1 rounded-lg bg-gray-50 px-4 py-4 font-mono text-sm">
+                <div class="mt-4 grid max-w-xl gap-1 rounded-lg bg-gray-50 px-4 py-4 font-mono text-sm">
                     @foreach (json_decode(decrypt($this->user->two_factor_recovery_codes), true) as $code)
                         <div>{{ $code }}</div>
                     @endforeach
@@ -95,10 +92,8 @@
                         </x-secondary-button>
                     </x-confirms-password>
                 @elseif ($showingConfirmation)
-                    <x-confirms-password
-                        wire:then="confirmTwoFactorAuthentication">
-                        <x-button class="mr-3" type="button"
-                            wire:loading.attr="disabled">
+                    <x-confirms-password wire:then="confirmTwoFactorAuthentication">
+                        <x-button class="mr-3" type="button" wire:loading.attr="disabled">
                             {{ 'Confirm' }}
                         </x-button>
                     </x-confirms-password>
@@ -111,15 +106,13 @@
                 @endif
 
                 @if ($showingConfirmation)
-                    <x-confirms-password
-                        wire:then="disableTwoFactorAuthentication">
+                    <x-confirms-password wire:then="disableTwoFactorAuthentication">
                         <x-secondary-button wire:loading.attr="disabled">
                             {{ 'Cancel' }}
                         </x-secondary-button>
                     </x-confirms-password>
                 @else
-                    <x-confirms-password
-                        wire:then="disableTwoFactorAuthentication">
+                    <x-confirms-password wire:then="disableTwoFactorAuthentication">
                         <x-danger-button wire:loading.attr="disabled">
                             {{ 'Disable' }}
                         </x-danger-button>

@@ -30,8 +30,7 @@
                     href="{{ route('profile.show') }}" wire:navigate>
                     {{ 'Edit Profile' }}</a>
 
-                <form class="inline" method="POST"
-                    action="{{ route('logout') }}">
+                <form class="inline" method="POST" action="{{ route('logout') }}">
                     @csrf
 
                     <button

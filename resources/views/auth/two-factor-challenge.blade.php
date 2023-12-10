@@ -20,23 +20,19 @@
 
                 <div class="mt-4" x-show="! recovery">
                     <x-label for="code" value="{{ 'Code' }}" />
-                    <x-input class="mt-1 block w-full" id="code"
-                        name="code" type="text" inputmode="numeric"
+                    <x-input class="mt-1 block w-full" id="code" name="code" type="text" inputmode="numeric"
                         autofocus x-ref="code" autocomplete="one-time-code" />
                 </div>
 
                 <div class="mt-4" x-cloak x-show="recovery">
-                    <x-label for="recovery_code"
-                        value="{{ 'Recovery Code' }}" />
-                    <x-input class="mt-1 block w-full" id="recovery_code"
-                        name="recovery_code" type="text"
+                    <x-label for="recovery_code" value="{{ 'Recovery Code' }}" />
+                    <x-input class="mt-1 block w-full" id="recovery_code" name="recovery_code" type="text"
                         x-ref="recovery_code" autocomplete="one-time-code" />
                 </div>
 
                 <div class="mt-4 flex items-center justify-end">
-                    <button
-                        class="cursor-pointer text-sm text-gray-700 underline hover:text-blue-900"
-                        type="button" x-show="! recovery"
+                    <button class="cursor-pointer text-sm text-gray-700 underline hover:text-blue-900" type="button"
+                        x-show="! recovery"
                         x-on:click="
                                         recovery = true;
                                         $nextTick(() => { $refs.recovery_code.focus() })
@@ -44,9 +40,8 @@
                         {{ 'Use a recovery code' }}
                     </button>
 
-                    <button
-                        class="cursor-pointer text-sm text-gray-700 underline hover:text-blue-900"
-                        type="button" x-cloak x-show="recovery"
+                    <button class="cursor-pointer text-sm text-gray-700 underline hover:text-blue-900" type="button"
+                        x-cloak x-show="recovery"
                         x-on:click="
                                         recovery = false;
                                         $nextTick(() => { $refs.code.focus() })

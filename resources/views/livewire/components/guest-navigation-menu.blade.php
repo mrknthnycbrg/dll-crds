@@ -5,11 +5,10 @@
             <div class="flex h-16 justify-between">
                 <!-- Logo -->
                 <div class="flex shrink-0 items-center">
-                    <a class="flex items-center" href="{{ route('welcome') }}"
-                        wire:navigate>
+                    <a class="flex items-center" href="{{ route('welcome') }}" wire:navigate>
                         <x-application-logo class="block h-10 w-auto" />
-                        <span
-                            class="ml-3 text-xl font-black text-gray-100">{{ 'DLL-CRDS' }}
+                        <span class="ml-3 text-xl font-black text-gray-100">
+                            {{ 'DLL-CRDS' }}
                         </span>
                     </a>
                 </div>
@@ -17,13 +16,11 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     @auth
-                        <x-nav-link href="{{ route('home') }}" wire:navigate
-                            :active="request()->routeIs('home')">
+                        <x-nav-link href="{{ route('home') }}" wire:navigate :active="request()->routeIs('home')">
                             {{ 'Home' }}
                         </x-nav-link>
                     @else
-                        <x-nav-link href="{{ route('login') }}" wire:navigate
-                            :active="request()->routeIs('login')">
+                        <x-nav-link href="{{ route('login') }}" wire:navigate :active="request()->routeIs('login')">
                             {{ 'Log In' }}
                         </x-nav-link>
                     @endauth
@@ -41,17 +38,14 @@
         </div>
 
         <!-- Responsive Navigation Menu -->
-        <div class="hidden sm:hidden"
-            :class="{ 'block': open, 'hidden': !open }">
+        <div class="hidden sm:hidden" :class="{ 'block': open, 'hidden': !open }">
             <div class="space-y-1 pb-3 pt-2">
                 @auth
-                    <x-responsive-nav-link href="{{ route('home') }}" wire:navigate
-                        :active="request()->routeIs('home')">
+                    <x-responsive-nav-link href="{{ route('home') }}" wire:navigate :active="request()->routeIs('home')">
                         {{ 'Home' }}
                     </x-responsive-nav-link>
                 @else
-                    <x-responsive-nav-link href="{{ route('login') }}" wire:navigate
-                        :active="request()->routeIs('login')">
+                    <x-responsive-nav-link href="{{ route('login') }}" wire:navigate :active="request()->routeIs('login')">
                         {{ 'Log In' }}
                     </x-responsive-nav-link>
                 @endauth

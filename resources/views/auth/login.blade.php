@@ -17,23 +17,20 @@
 
             <div>
                 <x-label for="email" value="{{ 'Email' }}" />
-                <x-input class="mt-1 block w-full" id="email" name="email"
-                    type="email" :value="old('email')" required autofocus
-                    autocomplete="username" />
+                <x-input class="mt-1 block w-full" id="email" name="email" type="email" :value="old('email')" required
+                    autofocus autocomplete="username" />
             </div>
 
             <div class="mt-4">
                 <x-label for="password" value="{{ 'Password' }}" />
-                <x-input class="mt-1 block w-full" id="password"
-                    name="password" type="password" required
+                <x-input class="mt-1 block w-full" id="password" name="password" type="password" required
                     autocomplete="current-password" />
             </div>
 
             <div class="mt-4 flex items-center justify-between">
                 <label class="flex items-center" for="remember_me">
                     <x-checkbox id="remember_me" name="remember" />
-                    <span
-                        class="ml-2 text-sm text-gray-700">{{ 'Remember me' }}</span>
+                    <span class="ml-2 text-sm text-gray-700">{{ 'Remember me' }}</span>
                 </label>
 
                 @if (Route::has('password.request'))

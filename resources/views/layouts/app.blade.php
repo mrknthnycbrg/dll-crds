@@ -9,22 +9,15 @@
         <title>{{ $title ?? config('app.name', 'DLL-CRDS') }}</title>
 
         <!-- Favicons -->
-        <link type="image/png" href="{{ asset('images/logo.png') }}" rel="icon"
-            sizes="16x16">
-        <link type="image/png" href="{{ asset('images/logo.png') }}"
-            rel="icon" sizes="32x32">
-        <link type="image/png" href="{{ asset('images/logo.png') }}"
-            rel="icon" sizes="96x96">
-        <link type="image/png" href="{{ asset('images/logo.png') }}"
-            rel="icon" sizes="180x180">
-        <link type="image/png" href="{{ asset('images/logo.png') }}"
-            rel="icon" sizes="192x192">
+        <link type="image/png" href="{{ asset('images/logo.png') }}" rel="icon" sizes="16x16">
+        <link type="image/png" href="{{ asset('images/logo.png') }}" rel="icon" sizes="32x32">
+        <link type="image/png" href="{{ asset('images/logo.png') }}" rel="icon" sizes="96x96">
+        <link type="image/png" href="{{ asset('images/logo.png') }}" rel="icon" sizes="180x180">
+        <link type="image/png" href="{{ asset('images/logo.png') }}" rel="icon" sizes="192x192">
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net" rel="preconnect">
-        <link
-            href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap"
-            rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -42,8 +35,7 @@
             <!-- Page Heading -->
             @if (isset($header))
                 <header>
-                    <div
-                        class="mx-auto max-w-full space-y-2 bg-white px-4 py-8 sm:px-6 lg:px-8">
+                    <div class="mx-auto max-w-full space-y-2 bg-white px-4 py-8 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>

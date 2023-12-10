@@ -15,9 +15,8 @@
 
             <div>
                 <x-label for="password" value="{{ 'Password' }}" />
-                <x-input class="mt-1 block w-full" id="password" name="password"
-                    type="password" required autocomplete="current-password"
-                    autofocus />
+                <x-input class="mt-1 block w-full" id="password" name="password" type="password" required
+                    autocomplete="current-password" autofocus />
             </div>
 
             <div class="mt-4 flex justify-end">
