@@ -10,14 +10,9 @@ class HomePage extends Component
 {
     public function render()
     {
-        $latestPost = Post::where('published', true)
+        $latestPosts = Post::where('published', true)
             ->latest('date_published')
-            ->first();
-
-        $otherPosts = Post::where('published', true)
-            ->latest('date_published')
-            ->skip(1)
-            ->take(2)
+            ->take(3)
             ->get();
 
         $latestResearches = Research::where('published', true)
@@ -25,7 +20,7 @@ class HomePage extends Component
             ->take(3)
             ->get();
 
-        return view('livewire.home.home-page', compact('latestPost', 'otherPosts', 'latestResearches'))
+        return view('livewire.home.home-page', compact('latestPosts', 'latestResearches'))
             ->layout('layouts.app')
             ->title('Home - DLL-CRDS');
     }
