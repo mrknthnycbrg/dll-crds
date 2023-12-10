@@ -43,7 +43,7 @@
             @if (isset($header))
                 <header>
                     <div
-                        class="mx-auto max-w-full space-y-2 bg-gray-50 px-4 py-8 sm:px-6 lg:px-8">
+                        class="mx-auto max-w-full space-y-2 bg-white px-4 py-8 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>

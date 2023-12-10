@@ -16,63 +16,34 @@
         </div>
 
         <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-            @if ($latestPost)
-                <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white md:col-span-2"
-                    href="{{ route('show-post', ['slug' => $latestPost->slug]) }}"
-                    wire:navigate wire:key="{{ $latestPost->id }}">
-                    @if ($latestPost->image_path)
+            @forelse ($latestPosts as $post)
+                <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-blue-50"
+                    href="{{ route('show-post', ['slug' => $post->slug]) }}"
+                    wire:navigate wire:key="{{ $post->id }}">
+                    @if ($post->image_path)
                         <img class="mx-auto aspect-video w-full rounded-md object-cover"
-                            src="{{ $latestPost->formattedImage() }}">
+                            src="{{ $post->formattedImage() }}">
                     @endif
-                    <span
-                        class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900 md:text-sm lg:text-base">
-                        {{ $latestPost->category->name }}
-                    </span>
-                    <h2
-                        class="text-xl font-bold text-blue-900 group-hover:underline md:text-2xl lg:text-3xl">
-                        {{ $latestPost->title }}
-                    </h2>
                     <p
-                        class="text-xs font-thin text-gray-700 md:text-sm lg:text-base">
-                        {{ $latestPost->formattedDate() }}
+                        class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
+                        {{ $post->category->name }}
                     </p>
-                    <p
-                        class="text-sm font-light text-gray-700 md:text-base lg:text-lg">
-                        {{ $latestPost->formattedContent() }}
+                    <h2
+                        class="text-xl font-bold text-blue-900 group-hover:underline">
+                        {{ $post->title }}</h2>
+                    <p class="text-xs font-thin text-gray-700">
+                        {{ $post->formattedDate() }}</p>
+                    <p class="text-sm font-light text-gray-700">
+                        {{ $post->formattedContent() }}
                     </p>
                 </a>
-            @endif
-
-            <div class="grid gap-8 md:col-span-1 md:grid-cols-1">
-                @foreach ($otherPosts as $post)
-                    <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white"
-                        href="{{ route('show-post', ['slug' => $post->slug]) }}"
-                        wire:navigate wire:key="{{ $post->id }}">
-                        @if ($post->image_path)
-                            <img class="mx-auto aspect-video w-full rounded-md object-cover"
-                                src="{{ $post->formattedImage() }}">
-                        @endif
-                        <span
-                            class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
-                            {{ $post->category->name }}
-                        </span>
-                        <h2
-                            class="text-xl font-bold text-blue-900 group-hover:underline">
-                            {{ $post->title }}
-                        </h2>
-                        <p class="text-xs font-thin text-gray-700">
-                            {{ $post->formattedDate() }}
-                        </p>
-                        <p class="text-sm font-light text-gray-700">
-                            {{ $post->formattedContent() }}
-                        </p>
-                    </a>
-                @endforeach
-            </div>
+            @empty
+                <p class="text-xl font-bold text-gray-700">
+                    {{ 'No posts yet.' }}
+                </p>
+            @endforelse
         </div>
-    </div>
 
-    <div class="mx-auto max-w-full px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between space-y-2 py-8">
             <h1 class="text-4xl font-black text-gray-900">
                 {{ 'Latest Researches' }}
@@ -84,15 +55,15 @@
             </a>
         </div>
 
-        <div class="grid grid-cols-1 gap-8">
-            @foreach ($latestResearches as $research)
-                <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white"
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+            @forelse ($latestResearches as $research)
+                <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-blue-50"
                     href="{{ route('show-research', ['slug' => $research->slug]) }}"
                     wire:navigate wire:key="{{ $research->id }}">
-                    <span
+                    <p
                         class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
                         {{ $research->department->name }}
-                    </span>
+                    </p>
                     <h2
                         class="text-xl font-bold text-blue-900 group-hover:underline">
                         {{ $research->title }}</h2>
@@ -104,7 +75,11 @@
                         {{ $research->formattedAbstract() }}
                     </p>
                 </a>
-            @endforeach
+            @empty
+                <p class="text-xl font-bold text-gray-700">
+                    {{ 'No researches yet.' }}
+                </p>
+            @endforelse
         </div>
     </div>
 </div>

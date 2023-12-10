@@ -7,8 +7,8 @@
 
     <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-            @foreach ($downloadables as $downloadable)
-                <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white"
+            @forelse ($downloadables as $downloadable)
+                <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-blue-50"
                     href="{{ route('show-downloadable', ['slug' => $downloadable->slug]) }}"
                     wire:navigate wire:key="{{ $downloadable->id }}">
                     <h2
@@ -18,7 +18,11 @@
                     <p class="text-xs font-thin text-gray-700">
                         {{ $downloadable->formattedDate() }}</p>
                 </a>
-            @endforeach
+            @empty
+                <p class="text-xl font-bold text-gray-700">
+                    {{ 'No resources yet.' }}
+                </p>
+            @endforelse
         </div>
 
         <div class="space-y-2 pt-8">

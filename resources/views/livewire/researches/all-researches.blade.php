@@ -6,15 +6,15 @@
     </x-slot>
 
     <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 gap-8">
-            @foreach ($researches as $research)
-                <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-white"
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+            @forelse ($researches as $research)
+                <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-blue-50"
                     href="{{ route('show-research', ['slug' => $research->slug]) }}"
                     wire:navigate wire:key="{{ $research->id }}">
-                    <span
+                    <p
                         class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
                         {{ $research->department->name }}
-                    </span>
+                    </p>
                     <h2
                         class="text-xl font-bold text-blue-900 group-hover:underline">
                         {{ $research->title }}</h2>
@@ -26,7 +26,11 @@
                         {{ $research->formattedAbstract() }}
                     </p>
                 </a>
-            @endforeach
+            @empty
+                <p class="text-xl font-bold text-gray-700">
+                    {{ 'No researches yet.' }}
+                </p>
+            @endforelse
         </div>
 
         <div class="space-y-2 pt-8">
