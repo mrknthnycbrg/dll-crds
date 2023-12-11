@@ -13,6 +13,8 @@ class CategoryPosts extends Component
 
     public $category;
 
+    public $selectedYear;
+
     public function mount($slug)
     {
         $this->category = Category::where('slug', $slug)->firstOrFail();
@@ -22,11 +24,19 @@ class CategoryPosts extends Component
     {
         $posts = Post::where('category_id', $this->category->id)
             ->where('published', true)
+            ->when($this->selectedYear, function ($query) {
+                $query->whereYear('date_published', $this->selectedYear);
+            })
             ->latest('date_published')
             ->paginate(6);
 
         return view('livewire.posts.category-posts', compact('posts'))
             ->layout('layouts.app')
-            ->title($this->category->name.' - DLL-CRDS');
+            ->title($this->category->name . ' - DLL-CRDS');
+    }
+
+    public function updatedSelectedYear()
+    {
+        $this->resetPage();
     }
 }

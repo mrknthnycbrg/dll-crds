@@ -3,7 +3,6 @@
 namespace App\Livewire\Components;
 
 use App\Models\Research;
-use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -21,7 +20,7 @@ class Search extends Component
 
         if (! empty($this->search)) {
             $researches = Research::search(trim($this->search))
-                ->query(function (Builder $query) {
+                ->query(function ($query) {
                     $query->join('departments', 'researches.department_id', '=', 'departments.id')
                         ->select('researches.*', 'departments.name')
                         ->where('published', true)
