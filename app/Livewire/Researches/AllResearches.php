@@ -11,7 +11,6 @@ class AllResearches extends Component
 {
     use WithPagination;
 
-
     public $selectedDepartment;
 
     public $selectedYear;
