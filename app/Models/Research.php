@@ -87,7 +87,7 @@ class Research extends Model
 
     public function formattedAbstract()
     {
-        return Str::words(strip_tags($this->abstract), 100);
+        return Str::words($this->abstract, 100);
     }
 
     public function formattedDate()
