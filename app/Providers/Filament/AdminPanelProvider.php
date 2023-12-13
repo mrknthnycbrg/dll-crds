@@ -31,6 +31,8 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->passwordReset()
+            ->emailVerification()
             ->profile(EditProfile::class)
             ->favicon(asset('images/logo.png'))
             ->brandName('DLL-CRDS Admin')
