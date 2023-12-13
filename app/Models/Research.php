@@ -9,13 +9,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Laravel\Scout\Attributes\SearchUsingFullText;
 use Laravel\Scout\Searchable;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class Research extends Model
 {
     use HasFactory;
-    use LogsActivity;
     use Searchable;
     use SoftDeletes;
 
@@ -77,12 +74,6 @@ class Research extends Model
             'abstract' => '',
             'departments.name' => '',
         ];
-    }
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logFillable();
     }
 
     public function formattedAbstract()

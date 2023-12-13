@@ -4,6 +4,7 @@ namespace App\Models;
 
 use BezhanSalleh\FilamentShield\Traits\HasPanelShield;
 use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasName;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -12,17 +13,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements FilamentUser, MustVerifyEmail
+class User extends Authenticatable implements FilamentUser, HasName, MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
     use HasPanelShield;
     use HasRoles;
-    use LogsActivity;
     use Notifiable;
     use SoftDeletes;
     use TwoFactorAuthenticatable;
@@ -33,7 +31,6 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'first_name',
         'middle_name',
         'last_name',
@@ -67,32 +64,8 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         return $this->hasOne(Number::class);
     }
 
-    public function getActivitylogOptions(): LogOptions
+    public function getFilamentName(): string
     {
-        return LogOptions::defaults()
-            ->logExcept(['password']);
-    }
-
-    protected static function boot(): void
-    {
-        parent::boot();
-
-        $generateAndSetName = function ($user) {
-            $nameComponents = [
-                $user->first_name,
-                $user->middle_name,
-                $user->last_name,
-            ];
-
-            $nameComponents = array_map('trim', array_filter($nameComponents, function ($component) {
-                return $component !== null;
-            }));
-
-            $user->name = implode(' ', $nameComponents);
-        };
-
-        static::creating($generateAndSetName);
-
-        static::updating($generateAndSetName);
+        return "{$this->first_name} {$this->last_name}";
     }
 }
