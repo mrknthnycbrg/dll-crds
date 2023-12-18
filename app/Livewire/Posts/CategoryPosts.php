@@ -32,7 +32,7 @@ class CategoryPosts extends Component
 
         return view('livewire.posts.category-posts', compact('posts'))
             ->layout('layouts.app')
-            ->title($this->category->name . ' - DLL-CRDS');
+            ->title($this->category->name.' - DLL-CRDS');
     }
 
     public function updatedSelectedYear()
