@@ -4,6 +4,7 @@ namespace App\Filament\Resources\NumberResource\Pages;
 
 use App\Filament\Resources\NumberResource;
 use Filament\Actions;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ManageRecords;
 use Konnco\FilamentImport\Actions\ImportAction;
 use Konnco\FilamentImport\Actions\ImportField;
@@ -15,7 +16,14 @@ class ManageNumbers extends ManageRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->successNotification(
+                    Notification::make()
+                        ->title('Number added')
+                        ->body('A number has been added successfully.')
+                        ->success()
+                        ->sendToDatabase(auth()->user()),
+                ),
             ImportAction::make()
                 ->handleBlankRows(true)
                 ->uniqueField('id_number')

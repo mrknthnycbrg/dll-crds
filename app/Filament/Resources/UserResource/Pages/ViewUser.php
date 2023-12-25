@@ -19,21 +19,6 @@ class ViewUser extends ViewRecord
         return [
             Impersonate::make()->record($this->getRecord()),
             Actions\EditAction::make(),
-            Actions\DeleteAction::make()
-                ->before(function (Actions\DeleteAction $action, User $record) {
-                    $id = $record->id;
-                    $superAdmin = $record->hasRole('Super Admin');
-                    $exists = Number::where('user_id', $id)->exists();
-
-                    if ($superAdmin || $exists) {
-                        Notification::make()
-                            ->title('Deletion not allowed')
-                            ->danger()
-                            ->send();
-
-                        $action->cancel();
-                    }
-                }),
         ];
     }
 }

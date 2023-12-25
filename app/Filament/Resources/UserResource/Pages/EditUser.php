@@ -19,23 +19,15 @@ class EditUser extends EditRecord
         return [
             Impersonate::make()->record($this->getRecord()),
             Actions\ViewAction::make(),
-            Actions\DeleteAction::make()
-                ->before(function (Actions\DeleteAction $action, User $record) {
-                    $id = $record->id;
-                    $superAdmin = $record->hasRole('Super Admin');
-                    $exists = Number::where('user_id', $id)->exists();
-
-                    if ($superAdmin || $exists) {
-                        Notification::make()
-                            ->title('Deletion not allowed')
-                            ->danger()
-                            ->send();
-
-                        $action->cancel();
-                    }
-                }),
-            Actions\ForceDeleteAction::make(),
-            Actions\RestoreAction::make(),
         ];
+    }
+
+    protected function getSavedNotification(): ?Notification
+    {
+        return Notification::make()
+            ->title('User updated')
+            ->body('A user has been updated successfully.')
+            ->success()
+            ->sendToDatabase(auth()->user());
     }
 }

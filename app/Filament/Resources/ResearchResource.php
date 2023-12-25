@@ -9,6 +9,7 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -214,9 +215,30 @@ class ResearchResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-                Tables\Actions\ForceDeleteAction::make(),
-                Tables\Actions\RestoreAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->successNotification(
+                        Notification::make()
+                            ->title('Research deleted')
+                            ->body('A research has been deleted successfully.')
+                            ->success()
+                            ->sendToDatabase(auth()->user()),
+                    ),
+                Tables\Actions\ForceDeleteAction::make()
+                    ->successNotification(
+                        Notification::make()
+                            ->title('Research force deleted')
+                            ->body('A research has been force deleted successfully.')
+                            ->success()
+                            ->sendToDatabase(auth()->user()),
+                    ),
+                Tables\Actions\RestoreAction::make()
+                    ->successNotification(
+                        Notification::make()
+                            ->title('Research restored')
+                            ->body('A research has been restored successfully.')
+                            ->success()
+                            ->sendToDatabase(auth()->user()),
+                    ),
             ])
             ->bulkActions([
                 ExportBulkAction::make(),
