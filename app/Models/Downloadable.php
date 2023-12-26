@@ -26,8 +26,8 @@ class Downloadable extends Model
     protected $fillable = [
         'name',
         'slug',
-        'description',
         'downloadable_path',
+        'description',
         'published',
         'date_published',
     ];
