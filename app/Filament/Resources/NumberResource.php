@@ -99,29 +99,33 @@ class NumberResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make()
-                    ->successNotification(
+                    ->successNotification(null)
+                    ->after(function () {
                         Notification::make()
                             ->title('Number updated')
                             ->body('A number has been updated successfully.')
                             ->success()
-                            ->sendToDatabase(auth()->user()),
-                    ),
+                            ->send()
+                            ->sendToDatabase(auth()->user());
+                    }),
                 Tables\Actions\DeleteAction::make()
-                    ->successNotification(
+                    ->successNotification(null)
+                    ->after(function () {
                         Notification::make()
                             ->title('Number deleted')
                             ->body('A number has been deleted successfully.')
                             ->success()
-                            ->sendToDatabase(auth()->user()),
-                    )
+                            ->send()
+                            ->sendToDatabase(auth()->user());
+                    })
                     ->before(function (Tables\Actions\DeleteAction $action, Number $record) {
                         $userId = $record->user_id;
                         $exists = User::where('id', $userId)->exists();
 
                         if ($exists) {
                             Notification::make()
-                                ->title('Deletion not allowed')
-                                ->body('This number cannot be deleted.')
+                                ->title('Number not deleted')
+                                ->body('A number is not allowed to be deleted.')
                                 ->danger()
                                 ->send()
                                 ->sendToDatabase(auth()->user());
@@ -130,21 +134,25 @@ class NumberResource extends Resource
                         }
                     }),
                 Tables\Actions\ForceDeleteAction::make()
-                    ->successNotification(
+                    ->successNotification(null)
+                    ->after(function () {
                         Notification::make()
                             ->title('Number force deleted')
                             ->body('A number has been force deleted successfully.')
                             ->success()
-                            ->sendToDatabase(auth()->user()),
-                    ),
+                            ->send()
+                            ->sendToDatabase(auth()->user());
+                    }),
                 Tables\Actions\RestoreAction::make()
-                    ->successNotification(
+                    ->successNotification(null)
+                    ->after(function () {
                         Notification::make()
                             ->title('Number restored')
                             ->body('A number has been restored successfully.')
                             ->success()
-                            ->sendToDatabase(auth()->user()),
-                    ),
+                            ->send()
+                            ->sendToDatabase(auth()->user());
+                    }),
             ])
             ->bulkActions([
                 ExportBulkAction::make(),

@@ -216,29 +216,35 @@ class ResearchResource extends Resource
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
-                    ->successNotification(
+                    ->successNotification(null)
+                    ->after(function () {
                         Notification::make()
                             ->title('Research deleted')
                             ->body('A research has been deleted successfully.')
                             ->success()
-                            ->sendToDatabase(auth()->user()),
-                    ),
+                            ->send()
+                            ->sendToDatabase(auth()->user());
+                    }),
                 Tables\Actions\ForceDeleteAction::make()
-                    ->successNotification(
+                    ->successNotification(null)
+                    ->after(function () {
                         Notification::make()
                             ->title('Research force deleted')
                             ->body('A research has been force deleted successfully.')
                             ->success()
-                            ->sendToDatabase(auth()->user()),
-                    ),
+                            ->send()
+                            ->sendToDatabase(auth()->user());
+                    }),
                 Tables\Actions\RestoreAction::make()
-                    ->successNotification(
+                    ->successNotification(null)
+                    ->after(function () {
                         Notification::make()
                             ->title('Research restored')
                             ->body('A research has been restored successfully.')
                             ->success()
-                            ->sendToDatabase(auth()->user()),
-                    ),
+                            ->send()
+                            ->sendToDatabase(auth()->user());
+                    }),
             ])
             ->bulkActions([
                 ExportBulkAction::make(),

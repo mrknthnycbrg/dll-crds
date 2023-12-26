@@ -15,13 +15,15 @@ class ManageDepartments extends ManageRecords
     {
         return [
             Actions\CreateAction::make()
-                ->successNotification(
+                ->successNotification(null)
+                ->after(function () {
                     Notification::make()
                         ->title('Department added')
                         ->body('A department has been added successfully.')
                         ->success()
-                        ->sendToDatabase(auth()->user()),
-                ),
+                        ->send()
+                        ->sendToDatabase(auth()->user());
+                }),
         ];
     }
 }

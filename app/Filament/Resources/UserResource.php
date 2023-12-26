@@ -156,13 +156,15 @@ class UserResource extends Resource
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
-                    ->successNotification(
+                    ->successNotification(null)
+                    ->after(function () {
                         Notification::make()
                             ->title('User deleted')
                             ->body('A user has been deleted successfully.')
                             ->success()
-                            ->sendToDatabase(auth()->user()),
-                    )
+                            ->send()
+                            ->sendToDatabase(auth()->user());
+                    })
                     ->before(function (Tables\Actions\DeleteAction $action, User $record) {
                         $id = $record->id;
                         $superAdmin = $record->hasRole('super_admin');
@@ -170,8 +172,8 @@ class UserResource extends Resource
 
                         if ($superAdmin || $exists) {
                             Notification::make()
-                                ->title('Deletion not allowed')
-                                ->body('This user cannot be deleted.')
+                                ->title('User not deleted')
+                                ->body('A user is not allowed to be deleted.')
                                 ->danger()
                                 ->send()
                                 ->sendToDatabase(auth()->user());
@@ -180,21 +182,25 @@ class UserResource extends Resource
                         }
                     }),
                 Tables\Actions\ForceDeleteAction::make()
-                    ->successNotification(
+                    ->successNotification(null)
+                    ->after(function () {
                         Notification::make()
                             ->title('User force deleted')
                             ->body('A user has been force deleted successfully.')
                             ->success()
-                            ->sendToDatabase(auth()->user()),
-                    ),
+                            ->send()
+                            ->sendToDatabase(auth()->user());
+                    }),
                 Tables\Actions\RestoreAction::make()
-                    ->successNotification(
+                    ->successNotification(null)
+                    ->after(function () {
                         Notification::make()
                             ->title('User restored')
                             ->body('A user has been restored successfully.')
                             ->success()
-                            ->sendToDatabase(auth()->user()),
-                    ),
+                            ->send()
+                            ->sendToDatabase(auth()->user());
+                    }),
             ])
             ->bulkActions([
                 ExportBulkAction::make(),

@@ -16,14 +16,6 @@ class ManageNumbers extends ManageRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make()
-                ->successNotification(
-                    Notification::make()
-                        ->title('Number added')
-                        ->body('A number has been added successfully.')
-                        ->success()
-                        ->sendToDatabase(auth()->user()),
-                ),
             ImportAction::make()
                 ->handleBlankRows(true)
                 ->uniqueField('id_number')
@@ -32,6 +24,16 @@ class ManageNumbers extends ManageRecords
                         ->label('ID Number')
                         ->required(),
                 ]),
+            Actions\CreateAction::make()
+                ->successNotification(null)
+                ->after(function () {
+                    Notification::make()
+                        ->title('Number added')
+                        ->body('A number has been added successfully.')
+                        ->success()
+                        ->send()
+                        ->sendToDatabase(auth()->user());
+                }),
         ];
     }
 }

@@ -100,29 +100,33 @@ class CategoryResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make()
-                    ->successNotification(
+                    ->successNotification(null)
+                    ->after(function () {
                         Notification::make()
                             ->title('Category updated')
                             ->body('A category has been updated successfully.')
                             ->success()
-                            ->sendToDatabase(auth()->user()),
-                    ),
+                            ->send()
+                            ->sendToDatabase(auth()->user());
+                    }),
                 Tables\Actions\DeleteAction::make()
-                    ->successNotification(
+                    ->successNotification(null)
+                    ->after(function () {
                         Notification::make()
                             ->title('Category deleted')
                             ->body('A category has been deleted successfully.')
                             ->success()
-                            ->sendToDatabase(auth()->user()),
-                    )
+                            ->send()
+                            ->sendToDatabase(auth()->user());
+                    })
                     ->before(function (Tables\Actions\DeleteAction $action, Category $record) {
                         $id = $record->id;
                         $exists = Post::where('category_id', $id)->exists();
 
                         if ($exists) {
                             Notification::make()
-                                ->title('Deletion not allowed')
-                                ->body('This category cannot be deleted.')
+                                ->title('Category not deleted')
+                                ->body('A category is not allowed to be deleted.')
                                 ->danger()
                                 ->send()
                                 ->sendToDatabase(auth()->user());
@@ -131,21 +135,25 @@ class CategoryResource extends Resource
                         }
                     }),
                 Tables\Actions\ForceDeleteAction::make()
-                    ->successNotification(
+                    ->successNotification(null)
+                    ->after(function () {
                         Notification::make()
                             ->title('Category force deleted')
                             ->body('A category has been force deleted successfully.')
                             ->success()
-                            ->sendToDatabase(auth()->user()),
-                    ),
+                            ->send()
+                            ->sendToDatabase(auth()->user());
+                    }),
                 Tables\Actions\RestoreAction::make()
-                    ->successNotification(
+                    ->successNotification(null)
+                    ->after(function () {
                         Notification::make()
                             ->title('Category restored')
                             ->body('A category has been restored successfully.')
                             ->success()
-                            ->sendToDatabase(auth()->user()),
-                    ),
+                            ->send()
+                            ->sendToDatabase(auth()->user());
+                    }),
             ])
             ->bulkActions([
                 ExportBulkAction::make(),

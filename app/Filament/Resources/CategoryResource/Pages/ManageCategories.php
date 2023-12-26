@@ -15,13 +15,15 @@ class ManageCategories extends ManageRecords
     {
         return [
             Actions\CreateAction::make()
-                ->successNotification(
+                ->successNotification(null)
+                ->after(function () {
                     Notification::make()
                         ->title('Category added')
                         ->body('A category has been added successfully.')
                         ->success()
-                        ->sendToDatabase(auth()->user()),
-                ),
+                        ->send()
+                        ->sendToDatabase(auth()->user());
+                }),
         ];
     }
 }

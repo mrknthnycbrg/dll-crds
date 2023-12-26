@@ -100,29 +100,33 @@ class DepartmentResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make()
-                    ->successNotification(
+                    ->successNotification(null)
+                    ->after(function () {
                         Notification::make()
                             ->title('Department updated')
                             ->body('A department has been updated successfully.')
                             ->success()
-                            ->sendToDatabase(auth()->user()),
-                    ),
+                            ->send()
+                            ->sendToDatabase(auth()->user());
+                    }),
                 Tables\Actions\DeleteAction::make()
-                    ->successNotification(
+                    ->successNotification(null)
+                    ->after(function () {
                         Notification::make()
                             ->title('Department deleted')
                             ->body('A department has been deleted successfully.')
                             ->success()
-                            ->sendToDatabase(auth()->user()),
-                    )
+                            ->send()
+                            ->sendToDatabase(auth()->user());
+                    })
                     ->before(function (Tables\Actions\DeleteAction $action, Department $record) {
                         $id = $record->id;
                         $exists = Research::where('department_id', $id)->exists();
 
                         if ($exists) {
                             Notification::make()
-                                ->title('Deletion not allowed')
-                                ->body('This department cannot be deleted.')
+                                ->title('Department not deleted')
+                                ->body('A department is not allowed to be deleted.')
                                 ->danger()
                                 ->send()
                                 ->sendToDatabase(auth()->user());
@@ -131,21 +135,25 @@ class DepartmentResource extends Resource
                         }
                     }),
                 Tables\Actions\ForceDeleteAction::make()
-                    ->successNotification(
+                    ->successNotification(null)
+                    ->after(function () {
                         Notification::make()
                             ->title('Department force deleted')
                             ->body('A department has been force deleted successfully.')
                             ->success()
-                            ->sendToDatabase(auth()->user()),
-                    ),
+                            ->send()
+                            ->sendToDatabase(auth()->user());
+                    }),
                 Tables\Actions\RestoreAction::make()
-                    ->successNotification(
+                    ->successNotification(null)
+                    ->after(function () {
                         Notification::make()
                             ->title('Department restored')
                             ->body('A department has been restored successfully.')
                             ->success()
-                            ->sendToDatabase(auth()->user()),
-                    ),
+                            ->send()
+                            ->sendToDatabase(auth()->user());
+                    }),
             ])
             ->bulkActions([
                 ExportBulkAction::make(),

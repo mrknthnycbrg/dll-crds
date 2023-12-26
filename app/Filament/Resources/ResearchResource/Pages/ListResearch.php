@@ -17,7 +17,6 @@ class ListResearch extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
             ImportAction::make()
                 ->uniqueField('title')
                 ->fields([
@@ -42,6 +41,7 @@ class ListResearch extends ListRecords
                         ->label('Adviser')
                         ->mutateBeforeCreate(fn ($value) => Str::title($value)),
                 ]),
+            Actions\CreateAction::make(),
         ];
     }
 }
