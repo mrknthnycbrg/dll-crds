@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('slug')->nullable()->unique();
-            $table->longText('description')->nullable()->fullText();
             $table->string('downloadable_path')->nullable();
+            $table->longText('description')->nullable()->fullText();
             $table->boolean('published')->default(false);
             $table->date('date_published')->nullable();
             $table->timestamps();
