@@ -5,7 +5,7 @@
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-700">
-            {{ 'This is a secure area of the application. Please confirm your password before continuing.' }}
+            {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
         </div>
 
         <x-validation-errors class="mb-4" />
@@ -14,14 +14,14 @@
             @csrf
 
             <div>
-                <x-label for="password" value="{{ 'Password' }}" />
+                <x-label for="password" value="Password" />
                 <x-input class="mt-1 block w-full" id="password" name="password" type="password" required
                     autocomplete="current-password" autofocus />
             </div>
 
             <div class="mt-4 flex justify-end">
                 <x-button class="ml-4">
-                    {{ 'Confirm' }}
+                    Confirm
                 </x-button>
             </div>
         </form>

@@ -23,13 +23,12 @@
         <div class="grid gap-8 md:col-span-1 md:grid-cols-1">
             <div class="flex items-center justify-between">
                 <h1 class="text-4xl font-black text-gray-900">
-                    {{ 'Related News' }}
+                    Related News
                 </h1>
             </div>
 
             @forelse ($relatedPosts as $post)
-                <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-blue-50"
-                    href="{{ route('show-post', ['slug' => $post->slug]) }}" wire:navigate
+                <x-card href="{{ route('show-post', ['slug' => $post->slug]) }}" wire:navigate
                     wire:key="{{ $post->id }}">
                     @if ($post->image_path)
                         <img class="mx-auto aspect-video w-full rounded-md object-cover"
@@ -48,10 +47,10 @@
                     <p class="text-sm font-light text-gray-700">
                         {{ $post->formattedContent() }}
                     </p>
-                </a>
+                </x-card>
             @empty
                 <p class="text-xl font-bold text-gray-700">
-                    {{ 'No related posts.' }}
+                    No related posts.
                 </p>
             @endforelse
         </div>

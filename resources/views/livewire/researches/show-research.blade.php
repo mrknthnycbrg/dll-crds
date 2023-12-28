@@ -5,7 +5,7 @@
                 {{ $research->title }}
             </h1>
             <span class="font-extrabold text-gray-900">
-                {{ 'Department:' }}
+                Department:
             </span>
             <span
                 class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs text-blue-900 hover:bg-blue-900 hover:text-gray-100"
@@ -15,37 +15,37 @@
             </span>
             <p class="text-base text-gray-700">
                 <span class="font-extrabold text-gray-900">
-                    {{ 'Adviser:' }}
+                    Adviser:
                 </span>
                 {{ $research->adviser }}
             </p>
             <p class="text-base text-gray-700">
                 <span class="font-extrabold text-gray-900">
-                    {{ 'Date Submitted:' }}
+                    Date Submitted:
                 </span>
                 {{ $research->formattedDAte() }}
             </p>
             <p class="text-base text-gray-700">
                 <span class="font-extrabold text-gray-900">
-                    {{ 'Author(s):' }}
+                    Authors:
                 </span>
                 {{ $research->author }}
             </p>
             <p class="text-base text-gray-700">
                 <span class="font-extrabold text-gray-900">
-                    {{ 'Keyword(s):' }}
+                    Keywords:
                 </span>
                 {{ $research->keyword }}
             </p>
             <p class="text-base font-extrabold text-gray-900">
-                {{ 'Abstract:' }}
+                Abstract:
             </p>
             <p class="text-base text-gray-700">
                 {{ $research->abstract }}
             </p>
             @if ($research->pdf_path)
                 <x-button wire:click="view">
-                    {{ 'View' }}
+                    View
                 </x-button>
             @endif
         </div>
@@ -53,13 +53,12 @@
         <div class="grid gap-8 md:col-span-1 md:grid-cols-1">
             <div class="flex items-center justify-between">
                 <h1 class="text-4xl font-black text-gray-900">
-                    {{ 'Related Researches' }}
+                    Related Researches
                 </h1>
             </div>
 
             @forelse ($relatedResearches as $research)
-                <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-blue-50"
-                    href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
+                <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
                     wire:key="{{ $research->id }}">
                     <p
                         class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs text-blue-900">
@@ -77,10 +76,10 @@
                     <p class="text-sm font-light text-gray-700">
                         {{ $research->formattedAbstract() }}
                     </p>
-                </a>
+                </x-card>
             @empty
                 <p class="text-xl font-bold text-gray-700">
-                    {{ 'No related researches.' }}
+                    No related researches.
                 </p>
             @endforelse
         </div>

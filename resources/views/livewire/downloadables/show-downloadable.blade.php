@@ -10,7 +10,7 @@
             {{ $downloadable->description }}
         </p>
         <x-button wire:click="download">
-            {{ 'Download File' }}
+            Download File
         </x-button>
     </div>
 </div>

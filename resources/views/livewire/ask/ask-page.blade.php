@@ -1,7 +1,7 @@
 <div>
     <x-slot name="header">
         <h1 class="text-4xl font-black text-gray-900">
-            {{ 'Ask AI' }}
+            Ask AI
         </h1>
     </x-slot>
 
@@ -11,7 +11,7 @@
                 <x-input class="block w-full" type="text" required autofocus wire:model="input"
                     placeholder="Ask a question" />
                 <x-button>
-                    {{ 'Ask' }}
+                    Ask
                 </x-button>
             </form>
             <textarea class="mt-4 block h-40 w-full rounded-md border-gray-300 shadow-sm focus:border-blue-900 focus:ring-blue-900"

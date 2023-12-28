@@ -8,7 +8,7 @@
                     <a class="flex items-center" href="{{ route('welcome') }}" wire:navigate>
                         <x-application-logo class="block h-10 w-auto" />
                         <span class="ml-3 text-xl font-black text-gray-100">
-                            {{ 'DLL-CRDS' }}
+                            DLL-CRDS
                         </span>
                     </a>
                 </div>
@@ -17,11 +17,11 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     @auth
                         <x-nav-link href="{{ route('home') }}" wire:navigate :active="request()->routeIs('home')">
-                            {{ 'Home' }}
+                            Home
                         </x-nav-link>
                     @else
                         <x-nav-link href="{{ route('login') }}" wire:navigate :active="request()->routeIs('login')">
-                            {{ 'Log In' }}
+                            Log In
                         </x-nav-link>
                     @endauth
                 </div>
@@ -42,11 +42,11 @@
             <div class="space-y-1 pb-3 pt-2">
                 @auth
                     <x-responsive-nav-link href="{{ route('home') }}" wire:navigate :active="request()->routeIs('home')">
-                        {{ 'Home' }}
+                        Home
                     </x-responsive-nav-link>
                 @else
                     <x-responsive-nav-link href="{{ route('login') }}" wire:navigate :active="request()->routeIs('login')">
-                        {{ 'Log In' }}
+                        Log In
                     </x-responsive-nav-link>
                 @endauth
             </div>

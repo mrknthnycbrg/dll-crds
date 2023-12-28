@@ -12,14 +12,13 @@
     @if ($search)
         <div class="space-y-2 py-8">
             <h1 class="text-4xl font-black text-gray-900">
-                {{ 'Search Results' }}
+                Search Results
             </h1>
         </div>
 
         <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
             @forelse ($researches as $research)
-                <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-blue-50"
-                    href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
+                <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
                     wire:key="{{ $research->id }}">
                     <p
                         class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
@@ -37,10 +36,10 @@
                     <p class="text-sm font-light text-gray-700">
                         {{ $research->formattedAbstract() }}
                     </p>
-                </a>
+                </x-card>
             @empty
                 <p class="text-xl font-bold text-gray-700">
-                    {{ 'No researches found.' }}
+                    No researches found.
                 </p>
             @endforelse
         </div>

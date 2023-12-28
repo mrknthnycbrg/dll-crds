@@ -1,41 +1,36 @@
 <div>
     <x-slot name="header">
         <h1 class="text-4xl font-black text-gray-900">
-            {{ 'News' }}
+            News
         </h1>
     </x-slot>
 
     <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 gap-x-8 md:grid-cols-3">
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700" for="category">{{ 'Filter by Category' }}</label>
-                <select
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-900 focus:ring-blue-900"
-                    id="category" wire:model.live.debounce="selectedCategory">
-                    <option value="0" selected>{{ 'All Categories' }}</option>
+                <x-label for="category" value="Filter by Category" />
+                <x-select class="mt-1 block w-full" id="category" wire:model.live.debounce="selectedCategory">
+                    <option value="0">All Categories</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
-                </select>
+                </x-select>
             </div>
 
             <div class="mb-8">
-                <label class="block text-sm font-medium text-gray-700" for="year">{{ 'Filter by Year' }}</label>
-                <select
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-900 focus:ring-blue-900"
-                    id="year" wire:model.live.debounce="selectedYear">
-                    <option value="0" selected>{{ 'All Years' }}</option>
+                <x-label for="year" value="Filter by Year" />
+                <x-select class="mt-1 block w-full" id="year" wire:model.live.debounce="selectedYear">
+                    <option value="0">All Years</option>
                     @for ($year = today()->year; $year >= 2001; $year--)
                         <option value="{{ $year }}">{{ $year }}</option>
                     @endfor
-                </select>
+                </x-select>
             </div>
         </div>
 
         <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
             @forelse ($posts as $post)
-                <a class="group block aspect-auto w-full space-y-2 rounded-md bg-gray-50 p-4 shadow-lg hover:bg-blue-50"
-                    href="{{ route('show-post', ['slug' => $post->slug]) }}" wire:navigate
+                <x-card href="{{ route('show-post', ['slug' => $post->slug]) }}" wire:navigate
                     wire:key="{{ $post->id }}">
                     @if ($post->image_path)
                         <img class="mx-auto aspect-video w-full rounded-md object-cover"
@@ -54,10 +49,10 @@
                     <p class="text-sm font-light text-gray-700">
                         {{ $post->formattedContent() }}
                     </p>
-                </a>
+                </x-card>
             @empty
                 <p class="text-xl font-bold text-gray-700">
-                    {{ 'No posts yet.' }}
+                    No posts yet.
                 </p>
             @endforelse
         </div>
