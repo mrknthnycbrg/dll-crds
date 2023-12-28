@@ -9,12 +9,8 @@
         <div class="grid grid-cols-1 gap-x-8 md:grid-cols-3">
             <div class="mb-8">
                 <x-label for="year" value="Filter by Year" />
-                <x-select class="mt-1 block w-full" id="year" wire:model.live.debounce="selectedYear">
-                    <option value="0">All Years</option>
-                    @for ($year = today()->year; $year >= 2001; $year--)
-                        <option value="{{ $year }}">{{ $year }}</option>
-                    @endfor
-                </x-select>
+                <x-select class="mt-1 block w-full" id="year" wire:model.live.debounce="selectedYear"
+                    :default="'All Years'" :options="range(today()->year, 2001)" />
             </div>
         </div>
 
