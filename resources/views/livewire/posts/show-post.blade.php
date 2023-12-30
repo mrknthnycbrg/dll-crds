@@ -14,10 +14,10 @@
             <div class="prose max-w-none">
                 {!! $post->content !!}
             </div>
-            <p class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900 hover:bg-blue-900 hover:text-gray-100"
+            <x-badge class="hover:bg-blue-800 hover:text-white"
                 href="{{ route('category-posts', ['slug' => $post->category->slug]) }}" role="button" wire:navigate>
                 {{ $post->category->name }}
-            </p>
+            </x-badge>
         </div>
 
         <div class="grid gap-8 md:col-span-1 md:grid-cols-1">
@@ -34,11 +34,10 @@
                         <img class="mx-auto aspect-video w-full rounded-md object-cover"
                             src="{{ $post->formattedImage() }}" alt="{{ $post->title }}">
                     @endif
-                    <p
-                        class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
+                    <x-badge>
                         {{ $post->category->name }}
-                    </p>
-                    <h2 class="text-xl font-bold text-blue-900 group-hover:underline">
+                    </x-badge>
+                    <h2 class="text-xl font-bold text-blue-800 group-hover:underline">
                         {{ $post->title }}
                     </h2>
                     <p class="text-xs font-thin text-gray-700">

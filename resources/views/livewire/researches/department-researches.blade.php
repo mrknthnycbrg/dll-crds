@@ -3,10 +3,9 @@
         <h1 class="text-4xl font-black text-gray-900">
             Researches
         </h1>
-        <p
-            class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
+        <x-badge>
             {{ $department->name }}
-        </p>
+        </x-badge>
     </x-slot>
 
     <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
@@ -22,11 +21,10 @@
             @forelse ($researches as $research)
                 <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
                     wire:key="{{ $research->id }}">
-                    <p
-                        class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
+                    <x-badge>
                         {{ $research->department->name }}
-                    </p>
-                    <h2 class="text-xl font-bold text-blue-900 group-hover:underline">
+                    </x-badge>
+                    <h2 class="text-xl font-bold text-blue-800 group-hover:underline">
                         {{ $research->title }}
                     </h2>
                     <p class="text-base font-medium text-gray-700">

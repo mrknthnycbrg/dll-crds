@@ -65,7 +65,7 @@
             Saved.
         </x-action-message>
 
-        <x-button wire:loading.attr="disabled" wire:target="photo">
+        <x-button wire:loading.attr="disabled">
             Save
         </x-button>
     </x-slot>

@@ -2,7 +2,7 @@
 
 <div style="display: none;" x-data="{{ json_encode(['show' => true, 'style' => $style, 'message' => $message]) }}"
     :class="{
-        'bg-blue-900': style == 'success',
+        'bg-blue-800': style == 'success',
         'bg-red-600': style == 'danger',
         'bg-gray-700': style != 'success' &&
             style != 'danger'
@@ -16,23 +16,23 @@
     <div class="mx-auto max-w-screen-xl px-3 py-2 sm:px-6 lg:px-8">
         <div class="flex flex-wrap items-center justify-between">
             <div class="flex w-0 min-w-0 flex-1 items-center">
-                <span class="flex rounded-lg p-2"
+                <span class="flex rounded-md p-2"
                     :class="{
-                        'bg-blue-900': style ==
+                        'bg-blue-800': style ==
                             'success',
                         'bg-red-600': style == 'danger'
                     }">
-                    <svg class="h-5 w-5 text-white" x-show="style == 'success'" xmlns="http://www.w3.org/2000/svg"
+                    <svg class="size-5 text-white" x-show="style == 'success'" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <svg class="h-5 w-5 text-white" x-show="style == 'danger'" xmlns="http://www.w3.org/2000/svg"
+                    <svg class="size-5 text-white" x-show="style == 'danger'" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
                     </svg>
-                    <svg class="h-5 w-5 text-white" x-show="style != 'success' && style != 'danger'"
+                    <svg class="size-5 text-white" x-show="style != 'success' && style != 'danger'"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -47,13 +47,13 @@
                 <button class="-mr-1 flex rounded-md p-2 transition focus:outline-none sm:-mr-2" type="button"
                     aria-label="Dismiss"
                     :class="{
-                        'hover:bg-blue-950 focus:bg-blue-950': style ==
+                        'hover:bg-blue-900 focus:bg-blue-900': style ==
                             'success',
                         'hover:bg-red-700 focus:bg-red-700': style == 'danger'
                     }"
                     x-on:click="show = false">
-                    <svg class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <svg class="size-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>

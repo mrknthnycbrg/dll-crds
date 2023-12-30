@@ -7,12 +7,11 @@
             <span class="font-extrabold text-gray-900">
                 Department:
             </span>
-            <span
-                class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs text-blue-900 hover:bg-blue-900 hover:text-gray-100"
+            <x-badge class="hover:bg-blue-800 hover:text-white"
                 href="{{ route('department-researches', ['slug' => $research->department->slug]) }}" role="button"
                 wire:navigate>
                 {{ $research->department->name }}
-            </span>
+            </x-badge>
             <p class="text-base text-gray-700">
                 <span class="font-extrabold text-gray-900">
                     Adviser:
@@ -60,11 +59,10 @@
             @forelse ($relatedResearches as $research)
                 <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
                     wire:key="{{ $research->id }}">
-                    <p
-                        class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs text-blue-900">
+                    <x-badge>
                         {{ $research->department->name }}
-                    </p>
-                    <h2 class="text-xl font-bold text-blue-900 group-hover:underline">
+                    </x-badge>
+                    <h2 class="text-xl font-bold text-blue-800 group-hover:underline">
                         {{ $research->title }}
                     </h2>
                     <p class="text-base font-medium text-gray-700">

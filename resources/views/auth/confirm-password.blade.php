@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-application-logo class="block h-28 w-auto" />
+            <x-application-logo class="size-28 block" href="{{ route('welcome') }}" role="button" wire:navigate />
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-700">
@@ -19,8 +19,8 @@
                     autocomplete="current-password" autofocus />
             </div>
 
-            <div class="mt-4 flex justify-end">
-                <x-button class="ml-4">
+            <div class="mt-4 flex items-center justify-center">
+                <x-button>
                     Confirm
                 </x-button>
             </div>

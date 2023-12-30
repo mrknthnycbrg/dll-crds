@@ -8,9 +8,9 @@
             <h1 class="text-4xl font-black text-gray-900">
                 Latest News
             </h1>
-            <a class="text-xl font-bold text-blue-900 hover:underline" href="{{ route('all-posts') }}" wire:navigate>
+            <a class="text-xl font-bold text-blue-800 hover:underline" href="{{ route('all-posts') }}" wire:navigate>
                 View all
-                <x-arrow-icon class="ml-1 inline-block h-6 w-6" />
+                <x-arrow-icon class="size-6 ml-1 inline-block" />
             </a>
         </div>
 
@@ -22,11 +22,10 @@
                         <img class="mx-auto aspect-video w-full rounded-md object-cover"
                             src="{{ $post->formattedImage() }}" alt="{{ $post->title }}">
                     @endif
-                    <p
-                        class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
+                    <x-badge>
                         {{ $post->category->name }}
-                    </p>
-                    <h2 class="text-xl font-bold text-blue-900 group-hover:underline">
+                    </x-badge>
+                    <h2 class="text-xl font-bold text-blue-800 group-hover:underline">
                         {{ $post->title }}
                     </h2>
                     <p class="text-xs font-thin text-gray-700">
@@ -47,10 +46,10 @@
             <h1 class="text-4xl font-black text-gray-900">
                 Latest Researches
             </h1>
-            <a class="text-xl font-bold text-blue-900 hover:underline" href="{{ route('all-researches') }}"
+            <a class="text-xl font-bold text-blue-800 hover:underline" href="{{ route('all-researches') }}"
                 wire:navigate>
                 View all
-                <x-arrow-icon class="ml-1 inline-block h-6 w-6" />
+                <x-arrow-icon class="size-6 ml-1 inline-block" />
             </a>
         </div>
 
@@ -58,11 +57,10 @@
             @forelse ($latestResearches as $research)
                 <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
                     wire:key="{{ $research->id }}">
-                    <p
-                        class="inline-flex items-center gap-x-1.5 rounded-md border border-blue-900 px-3 py-1.5 text-xs font-medium text-blue-900">
+                    <x-badge>
                         {{ $research->department->name }}
-                    </p>
-                    <h2 class="text-xl font-bold text-blue-900 group-hover:underline">
+                    </x-badge>
+                    <h2 class="text-xl font-bold text-blue-800 group-hover:underline">
                         {{ $research->title }}
                     </h2>
                     <p class="text-base font-medium text-gray-700">

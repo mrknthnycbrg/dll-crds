@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-application-logo class="block h-28 w-auto" />
+            <x-application-logo class="size-28 block" href="{{ route('welcome') }}" role="button" wire:navigate />
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-700">
@@ -14,7 +14,7 @@
             </div>
         @endif
 
-        <div class="mt-4 flex items-center justify-between">
+        <div class="mt-4 flex items-center justify-center">
             <form method="POST" action="{{ route('verification.send') }}">
                 @csrf
 
@@ -24,23 +24,23 @@
                     </x-button>
                 </div>
             </form>
+        </div>
 
-            <div>
-                <a class="rounded-md text-sm text-gray-700 underline hover:text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:ring-offset-2"
-                    href="{{ route('profile.show') }}" wire:navigate>
-                    Edit Profile
-                </a>
+        <div class="mt-4 flex items-center justify-around">
+            <a class="rounded-md text-sm text-gray-700 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2"
+                href="{{ route('profile.show') }}" wire:navigate>
+                Edit Profile
+            </a>
 
-                <form class="inline" method="POST" action="{{ route('logout') }}">
-                    @csrf
+            <form class="inline" method="POST" action="{{ route('logout') }}">
+                @csrf
 
-                    <button
-                        class="ml-2 rounded-md text-sm text-gray-700 underline hover:text-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:ring-offset-2"
-                        type="submit">
-                        Log Out
-                    </button>
-                </form>
-            </div>
+                <button
+                    class="ml-2 rounded-md text-sm text-gray-700 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2"
+                    type="submit">
+                    Log Out
+                </button>
+            </form>
         </div>
     </x-authentication-card>
 </x-guest-layout>

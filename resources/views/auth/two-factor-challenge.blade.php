@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-application-logo class="block h-28 w-auto" />
+            <x-application-logo class="size-28 block" href="{{ route('welcome') }}" role="button" wire:navigate />
         </x-slot>
 
         <div x-data="{ recovery: false }">
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="mt-4 flex items-center justify-end">
-                    <button class="cursor-pointer text-sm text-gray-700 underline hover:text-blue-900" type="button"
+                    <button class="cursor-pointer text-sm text-gray-700 underline hover:text-blue-800" type="button"
                         x-show="! recovery"
                         x-on:click="
                                         recovery = true;
@@ -40,7 +40,7 @@
                         {{ __('Use a recovery code') }}
                     </button>
 
-                    <button class="cursor-pointer text-sm text-gray-700 underline hover:text-blue-900" type="button"
+                    <button class="cursor-pointer text-sm text-gray-700 underline hover:text-blue-800" type="button"
                         x-cloak x-show="recovery"
                         x-on:click="
                                         recovery = false;

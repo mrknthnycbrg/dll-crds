@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-application-logo class="block h-28 w-auto" />
+            <x-application-logo class="size-28 block" href="{{ route('welcome') }}" role="button" wire:navigate />
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-700">
@@ -25,7 +25,7 @@
                     required autofocus autocomplete="username" />
             </div>
 
-            <div class="mt-4 flex items-center justify-end">
+            <div class="mt-4 flex items-center justify-center">
                 <x-button>
                     Email Password Reset Link
                 </x-button>

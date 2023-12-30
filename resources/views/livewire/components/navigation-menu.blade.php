@@ -1,13 +1,13 @@
 <div>
-    <nav class="bg-blue-900" x-data="{ open: false }">
+    <nav class="border-b border-gray-200 bg-white" x-data="{ open: false }">
         <!-- Primary Navigation Menu -->
         <div class="mx-auto max-w-full px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 justify-between">
                 <!-- Logo -->
                 <div class="flex shrink-0 items-center">
-                    <a class="flex items-center" href="{{ route('welcome') }}" wire:navigate>
-                        <x-application-logo class="block h-10 w-auto" />
-                        <span class="ml-3 text-xl font-black text-gray-100">
+                    <a class="group flex items-center space-x-2" href="{{ route('welcome') }}" wire:navigate>
+                        <x-application-logo class="size-10 block" />
+                        <span class="text-xl font-black text-black group-hover:text-blue-800 group-focus:text-blue-800">
                             DLL-CRDS
                         </span>
                     </a>
@@ -38,8 +38,8 @@
                         <x-dropdown>
                             <x-slot name="trigger">
                                 <button
-                                    class="flex rounded-full border-2 border-transparent text-sm text-gray-100 transition duration-150 ease-in-out hover:bg-blue-950 hover:text-yellow-500 focus:bg-blue-950 focus:text-yellow-500 focus:outline-none">
-                                    <x-user-icon class="block h-8 w-auto" />
+                                    class="flex rounded-full border-2 border-transparent text-sm text-gray-700 transition duration-150 ease-in-out hover:bg-gray-200 hover:text-blue-800 focus:bg-gray-200 focus:text-blue-800 focus:outline-none">
+                                    <x-user-icon class="size-8 block" />
                                 </button>
                             </x-slot>
                             <x-slot name="content">
@@ -68,9 +68,9 @@
                 <!-- Hamburger -->
                 <div class="-me-2 flex items-center sm:hidden">
                     <button
-                        class="inline-flex items-center justify-center rounded-md p-2 text-gray-100 transition duration-150 ease-in-out hover:bg-blue-950 hover:text-yellow-500 focus:bg-blue-950 focus:text-yellow-500 focus:outline-none"
+                        class="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-200 hover:text-blue-800 focus:bg-gray-200 focus:text-blue-800 focus:outline-none"
                         @click="open = ! open">
-                        <x-hamburger-icon class="block h-6 w-auto" />
+                        <x-hamburger-icon class="size-6 block" />
                     </button>
                 </div>
             </div>
@@ -100,10 +100,10 @@
             <div class="border-t border-gray-100 pb-1 pt-4">
                 <div class="flex items-center px-4">
                     <div>
-                        <div class="text-base font-medium text-gray-100">
+                        <div class="text-base font-medium text-gray-700">
                             {{ Auth::user()->first_name }}
                             {{ Auth::user()->last_name }}</div>
-                        <div class="text-sm font-medium text-gray-100">
+                        <div class="text-sm font-medium text-gray-500">
                             {{ Auth::user()->email }}
                         </div>
                     </div>

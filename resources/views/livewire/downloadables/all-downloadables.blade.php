@@ -18,7 +18,7 @@
             @forelse ($downloadables as $downloadable)
                 <x-card href="{{ route('show-downloadable', ['slug' => $downloadable->slug]) }}" wire:navigate
                     wire:key="{{ $downloadable->id }}">
-                    <h2 class="text-xl font-bold text-blue-900 group-hover:underline">
+                    <h2 class="text-xl font-bold text-blue-800 group-hover:underline">
                         {{ $downloadable->name }}
                     </h2>
                     <p class="text-xs font-thin text-gray-700">

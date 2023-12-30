@@ -27,8 +27,7 @@
     </head>
 
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 text-gray-900">
-            <livewire:components.guest-navigation-menu />
+        <div class="bg-gray-100 text-gray-900">
             {{ $slot }}
         </div>
 

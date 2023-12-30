@@ -1,7 +1,7 @@
 @props(['disabled' => false, 'default' => 'All', 'options' => []])
 
 <select {{ $disabled ? 'disabled' : '' }}
-    {{ $attributes->merge(['class' => 'rounded-md border-gray-300 shadow-sm focus:border-blue-900 focus:ring-blue-900']) }}>
+    {{ $attributes->merge(['class' => 'py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-800 focus:ring-blue-800 disabled:opacity-50 disabled:pointer-events-none']) }}>
     <option value="0" selected>
         {{ $default }}
     </option>
