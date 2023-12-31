@@ -7,6 +7,7 @@ use BezhanSalleh\FilamentShield\Traits\HasWidgetShield;
 use Filament\Widgets\ChartWidget;
 use Flowframe\Trend\Trend;
 use Flowframe\Trend\TrendValue;
+use Illuminate\Support\Carbon;
 
 class ResearchChart extends ChartWidget
 {
@@ -16,12 +17,12 @@ class ResearchChart extends ChartWidget
 
     protected static ?string $heading = 'Researches';
 
-    public ?string $filter = 'years';
+    public ?string $filter = 'all';
 
     protected function getFilters(): ?array
     {
         return [
-            'years' => '2020 - Present',
+            'all' => 'All time',
             'year' => 'This year',
             'month' => 'This month',
             'week' => 'This week',
@@ -33,11 +34,11 @@ class ResearchChart extends ChartWidget
         $activeFilter = $this->filter;
 
         switch ($activeFilter) {
-            case 'years':
+            case 'all':
                 $data = Trend::model(Research::class)
                     ->dateColumn('date_submitted')
                     ->between(
-                        start: today()->startOfYear()->setYear(2020),
+                        start: Carbon::parse(Research::min('date_submitted')),
                         end: today(),
                     )
                     ->perMonth()
@@ -77,7 +78,7 @@ class ResearchChart extends ChartWidget
                 $data = Trend::model(Research::class)
                     ->dateColumn('date_submitted')
                     ->between(
-                        start: today()->startOfYear()->setYear(2020),
+                        start: Carbon::parse(Research::min('date_submitted')),
                         end: today(),
                     )
                     ->perMonth()
