@@ -1,9 +1,8 @@
 {
     "name": "mrknthnycbrg/dll-crds",
     "type": "project",
-    "description": "The research management system of DLL-CRDS.",
-    "keywords": [],
-    "license": "proprietary",
+    "description": "The research management system of the DLL-CRDS office.",
+    "license": "MIT",
     "authors": [
         {
             "name": "Mark Anthony A. Cabriga",
