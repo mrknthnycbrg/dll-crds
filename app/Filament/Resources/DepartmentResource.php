@@ -121,9 +121,8 @@ class DepartmentResource extends Resource
                     })
                     ->before(function (Tables\Actions\DeleteAction $action, Department $record) {
                         $id = $record->id;
-                        $exists = Research::where('department_id', $id)->exists();
 
-                        if ($exists) {
+                        if (Research::where('department_id', $id)->exists()) {
                             Notification::make()
                                 ->title('Department not deleted')
                                 ->body('A department is not allowed to be deleted.')

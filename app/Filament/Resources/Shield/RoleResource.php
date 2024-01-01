@@ -11,6 +11,7 @@ use Filament\Forms;
 use Filament\Forms\Components\Actions\Action as FormAction;
 use Filament\Forms\Components\Component;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -19,6 +20,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
+use Spatie\Permission\Models\Role;
 
 class RoleResource extends Resource implements HasShieldPermissions
 {
@@ -235,7 +237,30 @@ class RoleResource extends Resource implements HasShieldPermissions
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->successNotification(null)
+                    ->after(function () {
+                        Notification::make()
+                            ->title('Role deleted')
+                            ->body('A role has been deleted successfully.')
+                            ->success()
+                            ->send()
+                            ->sendToDatabase(auth()->user());
+                    })
+                    ->before(function (Tables\Actions\DeleteAction $action, Role $record) {
+                        $roleName = $record->name;
+
+                        if (in_array($roleName, ['super_admin', 'panel_user'])) {
+                            Notification::make()
+                                ->title('Role not deleted')
+                                ->body('A role is not allowed to be deleted.')
+                                ->danger()
+                                ->send()
+                                ->sendToDatabase(auth()->user());
+
+                            $action->cancel();
+                        }
+                    }),
             ])
             ->bulkActions([
                 ExportBulkAction::make(),
@@ -327,7 +352,7 @@ class RoleResource extends Resource implements HasShieldPermissions
         return collect(FilamentShield::getResources())->sortKeys()->reduce(function ($entities, $entity) {
 
             $entities[] = Forms\Components\Section::make(FilamentShield::getLocalizedResourceLabel($entity['fqcn']))
-                ->description(fn () => new HtmlString('<span style="word-break: break-word;">'.Utils::showModelPath($entity['fqcn']).'</span>'))
+                ->description(fn () => new HtmlString('<span style="word-break: break-word;">' . Utils::showModelPath($entity['fqcn']) . '</span>'))
                 ->compact()
                 ->schema([
                     Forms\Components\CheckboxList::make($entity['resource'])
@@ -382,7 +407,7 @@ class RoleResource extends Resource implements HasShieldPermissions
     {
         return collect(Utils::getResourcePermissionPrefixes($entity['fqcn']))
             ->flatMap(fn ($permission) => [
-                $permission.'_'.$entity['resource'] => FilamentShield::getLocalizedResourcePermissionLabel($permission),
+                $permission . '_' . $entity['resource'] => FilamentShield::getLocalizedResourcePermissionLabel($permission),
             ])
             ->toArray();
     }
@@ -475,7 +500,7 @@ class RoleResource extends Resource implements HasShieldPermissions
         $resourcePermissions = collect();
         collect(FilamentShield::getResources())->each(function ($entity) use ($resourcePermissions) {
             collect(Utils::getResourcePermissionPrefixes($entity['fqcn']))->map(function ($permission) use ($resourcePermissions, $entity) {
-                $resourcePermissions->push((string) Str::of($permission.'_'.$entity['resource']));
+                $resourcePermissions->push((string) Str::of($permission . '_' . $entity['resource']));
             });
         });
 

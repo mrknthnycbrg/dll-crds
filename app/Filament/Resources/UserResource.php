@@ -165,9 +165,7 @@ class UserResource extends Resource
                             ->sendToDatabase(auth()->user());
                     })
                     ->before(function (Tables\Actions\DeleteAction $action, User $record) {
-                        $superAdmin = $record->hasRole('super_admin');
-
-                        if ($superAdmin) {
+                        if ($record->hasRole('super_admin')) {
                             Notification::make()
                                 ->title('User not deleted')
                                 ->body('A user is not allowed to be deleted.')

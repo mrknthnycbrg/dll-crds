@@ -120,9 +120,8 @@ class NumberResource extends Resource
                     })
                     ->before(function (Tables\Actions\DeleteAction $action, Number $record) {
                         $userId = $record->user_id;
-                        $exists = User::where('id', $userId)->exists();
 
-                        if ($exists) {
+                        if (User::where('id', $userId)->exists()) {
                             Notification::make()
                                 ->title('Number not deleted')
                                 ->body('A number is not allowed to be deleted.')
