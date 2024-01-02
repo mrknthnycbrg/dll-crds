@@ -24,7 +24,9 @@ class CategoryChart extends ChartWidget
                     'label' => 'Categories',
                     'data' => $data->pluck('posts_count')->toArray(),
                     'backgroundColor' => ['#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b', '#84cc16', '#14b8a6', '#6366f1', '#a855f7'],
-                    'borderColor' => '#1e40af',
+                    'animation' => [
+                        'duration' => 1500
+                    ],
                 ],
             ],
             'labels' => $data->pluck('name')->toArray(),
@@ -35,5 +37,24 @@ class CategoryChart extends ChartWidget
     protected function getType(): string
     {
         return 'doughnut';
+    }
+
+    protected function getOptions(): array
+    {
+        return [
+            'elements' => [
+                'arc' => [
+                    'borderWidth' => 0,
+                ],
+            ],
+            'scales' => [
+                'x' => [
+                    'display' => false,
+                ],
+                'y' => [
+                    'display' => false,
+                ],
+            ],
+        ];
     }
 }

@@ -91,8 +91,10 @@ class PostChart extends ChartWidget
                 [
                     'label' => 'Posts',
                     'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
-                    'backgroundColor' => '#1e40af',
-                    'borderColor' => '#1e40af',
+                    'backgroundColor' => '#3b82f6',
+                    'animation' => [
+                        'duration' => 1500
+                    ],
                 ],
             ],
             'labels' => $data->map(fn (TrendValue $value) => $value->date),
@@ -102,5 +104,16 @@ class PostChart extends ChartWidget
     protected function getType(): string
     {
         return 'bar';
+    }
+
+    protected function getOptions(): array
+    {
+        return [
+            'elements' => [
+                'bar' => [
+                    'borderWidth' => 0,
+                ],
+            ],
+        ];
     }
 }
