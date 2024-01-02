@@ -15,7 +15,7 @@ class ResearchChart extends ChartWidget
 
     protected static ?int $sort = 2;
 
-    protected static ?string $heading = 'Researches';
+    protected static ?string $heading = 'Researches by Date';
 
     public ?string $filter = 'all';
 
@@ -89,8 +89,10 @@ class ResearchChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Researches added',
+                    'label' => 'Researches',
                     'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
+                    'backgroundColor' => '#1e40af',
+                    'borderColor' => '#1e40af',
                 ],
             ],
             'labels' => $data->map(fn (TrendValue $value) => $value->date),

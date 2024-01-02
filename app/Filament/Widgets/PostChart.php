@@ -15,7 +15,7 @@ class PostChart extends ChartWidget
 
     protected static ?int $sort = 3;
 
-    protected static ?string $heading = 'Posts';
+    protected static ?string $heading = 'Posts by Date';
 
     public ?string $filter = 'all';
 
@@ -89,8 +89,10 @@ class PostChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Posts created',
+                    'label' => 'Posts',
                     'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
+                    'backgroundColor' => '#1e40af',
+                    'borderColor' => '#1e40af',
                 ],
             ],
             'labels' => $data->map(fn (TrendValue $value) => $value->date),
