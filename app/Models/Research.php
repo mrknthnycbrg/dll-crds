@@ -9,10 +9,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Laravel\Scout\Attributes\SearchUsingFullText;
 use Laravel\Scout\Searchable;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Research extends Model
 {
     use HasFactory;
+    use LogsActivity;
     use Searchable;
     use SoftDeletes;
 
@@ -61,6 +64,12 @@ class Research extends Model
     public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class);
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable();
     }
 
     #[SearchUsingFullText(['abstract'])]
