@@ -1,17 +1,15 @@
 <div class="mx-auto max-w-full bg-white px-4 py-8 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-        <div class="max-w-full space-y-4 md:col-span-2">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div class="max-w-full space-y-4 lg:col-span-2">
             <h1 class="text-4xl font-black text-gray-900">
                 {{ $research->title }}
             </h1>
-            <span class="font-extrabold text-gray-900">
-                Department:
-            </span>
-            <x-badge class="hover:bg-blue-800 hover:text-white"
-                href="{{ route('department-researches', ['slug' => $research->department->slug]) }}" role="button"
-                wire:navigate>
+            <p class="text-base text-gray-700">
+                <span class="font-extrabold text-gray-900">
+                    Department:
+                </span>
                 {{ $research->department->name }}
-            </x-badge>
+            </p>
             <p class="text-base text-gray-700">
                 <span class="font-extrabold text-gray-900">
                     Adviser:
@@ -49,11 +47,17 @@
             @endif
         </div>
 
-        <div class="grid gap-8 md:col-span-1 md:grid-cols-1">
-            <div class="flex items-center justify-between">
+        <div class="grid gap-8 lg:col-span-1 lg:grid-cols-1">
+            <div class="space-y-2">
                 <h1 class="text-4xl font-black text-gray-900">
                     Related Researches
                 </h1>
+
+                <x-badge class="hover:bg-blue-800 hover:text-white"
+                    href="{{ route('department-researches', ['slug' => $research->department->slug]) }}" role="button"
+                    wire:navigate>
+                    {{ $research->department->name }}
+                </x-badge>
             </div>
 
             @forelse ($relatedResearches as $research)
@@ -62,7 +66,7 @@
                     <x-badge>
                         {{ $research->department->name }}
                     </x-badge>
-                    <h2 class="text-xl font-bold text-blue-800 group-hover:underline">
+                    <h2 class="text-xl font-bold text-gray-700 group-hover:text-blue-800">
                         {{ $research->title }}
                     </h2>
                     <p class="text-base font-medium text-gray-700">

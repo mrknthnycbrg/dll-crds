@@ -16,14 +16,14 @@
             </h1>
         </div>
 
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
             @forelse ($researches as $research)
                 <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
                     wire:key="{{ $research->id }}">
                     <x-badge>
                         {{ $research->department->name }}
                     </x-badge>
-                    <h2 class="text-xl font-bold text-blue-800 group-hover:underline">
+                    <h2 class="text-xl font-bold text-gray-700 group-hover:text-blue-800">
                         {{ $research->title }}
                     </h2>
                     <p class="text-base font-medium text-gray-700">

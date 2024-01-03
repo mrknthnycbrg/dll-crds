@@ -8,8 +8,7 @@
     <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
         <div class="flex flex-col items-center">
             <form class="flex w-full items-center justify-center space-x-2" wire:submit="response">
-                <x-input class="block w-full" type="text" placeholder="Enter a topic" required autofocus
-                    wire:model="input" />
+                <x-input class="block w-full" type="text" placeholder="Enter a topic" required wire:model="input" />
                 <x-button wire:loading.attr="disabled">
                     Ask
                 </x-button>

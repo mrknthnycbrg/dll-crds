@@ -6,19 +6,22 @@
     </x-slot>
 
     <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 gap-x-8 md:grid-cols-3">
-            <div class="mb-8">
-                <x-label for="year" value="Filter by Year" />
-                <x-select class="mt-1 block w-full" id="year" wire:model.live.debounce="selectedYear"
-                    :default="'All Years'" :options="range(today()->year, 2001)" />
-            </div>
-        </div>
 
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        @if (count($downloadables) > 0)
+            <div class="grid grid-cols-1 gap-x-8 lg:grid-cols-3">
+                <div class="mb-8">
+                    <x-label for="year" value="Year" />
+                    <x-select class="mt-1 block w-full" id="year" wire:model.live.debounce="selectedYear"
+                        :default="'All Years'" :options="range(today()->year, 2001)" />
+                </div>
+            </div>
+        @endif
+
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
             @forelse ($downloadables as $downloadable)
                 <x-card href="{{ route('show-downloadable', ['slug' => $downloadable->slug]) }}" wire:navigate
                     wire:key="{{ $downloadable->id }}">
-                    <h2 class="text-xl font-bold text-blue-800 group-hover:underline">
+                    <h2 class="text-xl font-bold text-gray-700 group-hover:text-blue-800">
                         {{ $downloadable->name }}
                     </h2>
                     <p class="text-xs font-thin text-gray-700">

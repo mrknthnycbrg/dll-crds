@@ -9,22 +9,25 @@
     </x-slot>
 
     <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 gap-x-8 md:grid-cols-3">
-            <div class="mb-8">
-                <x-label for="year" value="Filter by Year" />
-                <x-select class="mt-1 block w-full" id="year" wire:model.live.debounce="selectedYear"
-                    :default="'All Years'" :options="range(today()->year, 2001)" />
-            </div>
-        </div>
 
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        @if (count($researches) > 0)
+            <div class="grid grid-cols-1 gap-x-8 lg:grid-cols-3">
+                <div class="mb-8">
+                    <x-label for="year" value="Year" />
+                    <x-select class="mt-1 block w-full" id="year" wire:model.live.debounce="selectedYear"
+                        :default="'All Years'" :options="range(today()->year, 2001)" />
+                </div>
+            </div>
+        @endif
+
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
             @forelse ($researches as $research)
                 <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
                     wire:key="{{ $research->id }}">
                     <x-badge>
                         {{ $research->department->name }}
                     </x-badge>
-                    <h2 class="text-xl font-bold text-blue-800 group-hover:underline">
+                    <h2 class="text-xl font-bold text-gray-700 group-hover:text-blue-800">
                         {{ $research->title }}
                     </h2>
                     <p class="text-base font-medium text-gray-700">
