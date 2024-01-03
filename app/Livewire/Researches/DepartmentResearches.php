@@ -32,7 +32,7 @@ class DepartmentResearches extends Component
 
         return view('livewire.researches.department-researches', compact('researches'))
             ->layout('layouts.app')
-            ->title($this->department->name.' - DLL-CRDS');
+            ->title($this->department->name . ' - DLL-CRDS');
     }
 
     public function updatedSelectedYear()

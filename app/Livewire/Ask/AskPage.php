@@ -13,8 +13,8 @@ class AskPage extends Component
 
     public function response()
     {
-        if (! empty($this->input)) {
-            $prompt = 'Suggest research titles based on this topic: '.$this->input;
+        if (!empty($this->input)) {
+            $prompt = 'Suggest research titles based on this topic: ' . $this->input;
 
             $response = OpenAI::completions()->create([
                 'model' => 'gpt-3.5-turbo',

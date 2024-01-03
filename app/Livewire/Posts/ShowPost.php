@@ -21,12 +21,12 @@ class ShowPost extends Component
             ['category_id', '=', $this->post->category_id],
             ['published', '=', true],
         ])
-            ->latest('date_published')
+            ->inRandomOrder()
             ->take(3)
             ->get();
 
         return view('livewire.posts.show-post', compact('relatedPosts'))
             ->layout('layouts.app')
-            ->title($this->post->title.' - DLL-CRDS');
+            ->title($this->post->title . ' - DLL-CRDS');
     }
 }

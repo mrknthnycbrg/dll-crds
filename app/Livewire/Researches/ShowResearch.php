@@ -21,13 +21,13 @@ class ShowResearch extends Component
             ['department_id', '=', $this->research->department_id],
             ['published', '=', true],
         ])
-            ->latest('date_submitted')
+            ->inRandomOrder()
             ->take(3)
             ->get();
 
         return view('livewire.researches.show-research', compact('relatedResearches'))
             ->layout('layouts.app')
-            ->title($this->research->title.' - DLL-CRDS');
+            ->title($this->research->title . ' - DLL-CRDS');
     }
 
     public function view()
