@@ -91,7 +91,8 @@ class ResearchChart extends ChartWidget
                 [
                     'label' => 'Researches',
                     'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
-                    'backgroundColor' => '#3b82f6',
+                    'backgroundColor' => '#1e40af',
+                    'borderColor' => '#93c5fd',
                     'animation' => [
                         'duration' => 1500
                     ],
@@ -104,16 +105,5 @@ class ResearchChart extends ChartWidget
     protected function getType(): string
     {
         return 'bar';
-    }
-
-    protected function getOptions(): array
-    {
-        return [
-            'elements' => [
-                'bar' => [
-                    'borderWidth' => 0,
-                ],
-            ],
-        ];
     }
 }

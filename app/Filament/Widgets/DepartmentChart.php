@@ -23,7 +23,8 @@ class DepartmentChart extends ChartWidget
                 [
                     'label' => 'Departments',
                     'data' => $data->pluck('researches_count')->toArray(),
-                    'backgroundColor' => ['#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b', '#84cc16', '#14b8a6', '#6366f1', '#a855f7'],
+                    'backgroundColor' => ['#1e40af', '#3730a3', '#2563eb', '#4f46e5', '#60a5fa', '#818cf8', '#1d4ed8', '#4338ca', '#3b82f6', '#6366f1'],
+                    'borderColor' => '#93c5fd',
                     'animation' => [
                         'duration' => 1500
                     ],
@@ -42,11 +43,6 @@ class DepartmentChart extends ChartWidget
     protected function getOptions(): array
     {
         return [
-            'elements' => [
-                'arc' => [
-                    'borderWidth' => 0,
-                ],
-            ],
             'scales' => [
                 'x' => [
                     'display' => false,
