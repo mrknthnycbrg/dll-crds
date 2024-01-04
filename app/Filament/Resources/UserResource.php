@@ -85,7 +85,7 @@ class UserResource extends Resource
                                     ->multiple()
                                     ->searchable()
                                     ->preload()
-                                    ->disabled(fn ($record) => $record->id === 1)
+                                    ->disabled(fn (string $operation): bool => $operation === 'edit' && (fn ($record) => $record->id === 1))
                                     ->native(false),
                             ])
                             ->columns(3),
