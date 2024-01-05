@@ -18,7 +18,7 @@ class Search extends Component
     {
         $researches = [];
 
-        if (!empty($this->search)) {
+        if (! empty($this->search)) {
             $researches = Research::search(trim($this->search))
                 ->query(function ($query) {
                     $query->join('departments', 'researches.department_id', '=', 'departments.id')

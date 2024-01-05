@@ -94,7 +94,7 @@ class PostChart extends ChartWidget
                     'backgroundColor' => '#1e40af',
                     'borderColor' => '#93c5fd',
                     'animation' => [
-                        'duration' => 1500
+                        'duration' => 1500,
                     ],
                 ],
             ],

@@ -26,14 +26,13 @@ class CategoryChart extends ChartWidget
                     'backgroundColor' => ['#1e40af', '#3730a3', '#2563eb', '#4f46e5', '#60a5fa', '#818cf8', '#1d4ed8', '#4338ca', '#3b82f6', '#6366f1'],
                     'borderColor' => '#93c5fd',
                     'animation' => [
-                        'duration' => 1500
+                        'duration' => 1500,
                     ],
                 ],
             ],
             'labels' => $data->pluck('name')->toArray(),
         ];
     }
-
 
     protected function getType(): string
     {

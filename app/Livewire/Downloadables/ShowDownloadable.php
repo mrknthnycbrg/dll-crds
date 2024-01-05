@@ -19,11 +19,11 @@ class ShowDownloadable extends Component
     {
         return view('livewire.downloadables.show-downloadable')
             ->layout('layouts.app')
-            ->title($this->downloadable->name . ' - DLL-CRDS');
+            ->title($this->downloadable->name.' - DLL-CRDS');
     }
 
     public function download()
     {
-        return response()->download(Storage::path('public/' . $this->downloadable->downloadable_path));
+        return response()->download(Storage::path('public/'.$this->downloadable->downloadable_path));
     }
 }

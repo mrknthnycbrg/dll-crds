@@ -27,6 +27,6 @@ class ShowPost extends Component
 
         return view('livewire.posts.show-post', compact('relatedPosts'))
             ->layout('layouts.app')
-            ->title($this->post->title . ' - DLL-CRDS');
+            ->title($this->post->title.' - DLL-CRDS');
     }
 }

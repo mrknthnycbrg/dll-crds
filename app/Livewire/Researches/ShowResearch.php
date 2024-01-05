@@ -27,7 +27,7 @@ class ShowResearch extends Component
 
         return view('livewire.researches.show-research', compact('relatedResearches'))
             ->layout('layouts.app')
-            ->title($this->research->title . ' - DLL-CRDS');
+            ->title($this->research->title.' - DLL-CRDS');
     }
 
     public function view()
