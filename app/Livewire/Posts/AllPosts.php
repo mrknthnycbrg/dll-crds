@@ -4,6 +4,7 @@ namespace App\Livewire\Posts;
 
 use App\Models\Category;
 use App\Models\Post;
+use Illuminate\Support\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -17,7 +18,21 @@ class AllPosts extends Component
 
     public function render()
     {
-        $categories = Category::all();
+        $categories = Category::pluck('name', 'id');
+
+        $latestPublished = Post::where('published', true)->max('date_published');
+
+        $earliestPublished = Post::where('published', true)->min('date_published');
+
+        if ($latestPublished && $earliestPublished) {
+            $latestYear = Carbon::parse($latestPublished)->year;
+            $earliestYear = Carbon::parse($earliestPublished)->year;
+
+            $yearRange = range($latestYear, $earliestYear);
+            $years = array_combine($yearRange, $yearRange);
+        } else {
+            $years = null;
+        }
 
         $posts = Post::where('published', true)
             ->when($this->selectedCategory, function ($query) {
@@ -29,12 +44,12 @@ class AllPosts extends Component
             ->latest('date_published')
             ->paginate(6);
 
-        return view('livewire.posts.all-posts', compact('posts', 'categories'))
+        return view('livewire.posts.all-posts', compact('posts', 'categories', 'years'))
             ->layout('layouts.app')
             ->title('News - DLL-CRDS');
     }
 
-    public function selectedCategory()
+    public function updatedSelectedCategory()
     {
         $this->resetPage();
     }
