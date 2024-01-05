@@ -6,22 +6,19 @@
     </x-slot>
 
     <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
-
-        @if (count($posts) > 0)
-            <div class="grid grid-cols-1 gap-x-8 lg:grid-cols-3">
-                <div class="mb-4">
-                    <x-label for="category" value="Category" />
-                    <x-select class="mt-1 block w-full" id="category" wire:model.live.debounce="selectedCategory"
-                        :default="'All Categories'" :options="$categories->pluck('name', 'id')" />
-                </div>
-
-                <div class="mb-8">
-                    <x-label for="year" value="Year" />
-                    <x-select class="mt-1 block w-full" id="year" wire:model.live.debounce="selectedYear"
-                        :default="'All Years'" :options="range(today()->year, 2001)" />
-                </div>
+        <div class="grid grid-cols-1 gap-x-8 lg:grid-cols-3">
+            <div class="mb-4">
+                <x-label for="category" value="Category" />
+                <x-select class="mt-1 block w-full" id="category" wire:model.live.debounce="selectedCategory"
+                    :default="'All Categories'" :options="$categories" />
             </div>
-        @endif
+
+            <div class="mb-8">
+                <x-label for="year" value="Year" />
+                <x-select class="mt-1 block w-full" id="year" wire:model.live.debounce="selectedYear"
+                    :default="'All Years'" :options="$years" />
+            </div>
+        </div>
 
         <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
             @forelse ($posts as $post)

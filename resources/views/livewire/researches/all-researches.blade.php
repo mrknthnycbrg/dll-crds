@@ -6,22 +6,19 @@
     </x-slot>
 
     <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
-
-        @if (count($researches) > 0)
-            <div class="grid grid-cols-1 gap-x-8 lg:grid-cols-3">
-                <div class="mb-4">
-                    <x-label for="department" value="Department" />
-                    <x-select class="mt-1 block w-full" id="department" wire:model.live.debounce="selectedDepartment"
-                        :default="'All Departments'" :options="$departments->pluck('name', 'id')" />
-                </div>
-
-                <div class="mb-8">
-                    <x-label for="year" value="Year" />
-                    <x-select class="mt-1 block w-full" id="year" wire:model.live.debounce="selectedYear"
-                        :default="'All Years'" :options="range(today()->year, 2001)" />
-                </div>
+        <div class="grid grid-cols-1 gap-x-8 lg:grid-cols-3">
+            <div class="mb-4">
+                <x-label for="department" value="Department" />
+                <x-select class="mt-1 block w-full" id="department" wire:model.live.debounce="selectedDepartment"
+                    :default="'All Departments'" :options="$departments" />
             </div>
-        @endif
+
+            <div class="mb-8">
+                <x-label for="year" value="Year" />
+                <x-select class="mt-1 block w-full" id="year" wire:model.live.debounce="selectedYear"
+                    :default="'All Years'" :options="$years" />
+            </div>
+        </div>
 
         <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
             @forelse ($researches as $research)

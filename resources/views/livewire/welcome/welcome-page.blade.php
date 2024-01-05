@@ -49,7 +49,7 @@
     <div class="mx-auto max-w-full px-4 py-4 sm:px-6 lg:px-8">
         <div class="text-center">
             <p class="text-base text-gray-700">
-                &copy; {{ date('Y') }} DLL-CRDS
+                &copy; {{ now()->year }} DLL-CRDS
             </p>
         </div>
     </div>
