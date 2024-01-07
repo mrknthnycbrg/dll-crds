@@ -47,24 +47,20 @@ class UserResource extends Resource
                                 Forms\Components\TextInput::make('first_name')
                                     ->label('First Name')
                                     ->placeholder('Enter first name')
-                                    ->maxLength(255)
                                     ->required()
                                     ->markAsRequired(false),
                                 Forms\Components\TextInput::make('middle_name')
                                     ->label('Middle Name (Optional)')
-                                    ->placeholder('Enter middle name')
-                                    ->maxLength(255),
+                                    ->placeholder('Enter middle name'),
                                 Forms\Components\TextInput::make('last_name')
                                     ->label('Last Name')
                                     ->placeholder('Enter last name')
-                                    ->maxLength(255)
                                     ->required()
                                     ->markAsRequired(false),
                                 Forms\Components\TextInput::make('email')
                                     ->label('Email')
                                     ->placeholder('Enter email')
                                     ->email()
-                                    ->maxLength(255)
                                     ->required()
                                     ->markAsRequired(false)
                                     ->unique(ignorable: fn ($record) => $record),
