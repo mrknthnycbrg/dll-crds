@@ -17,7 +17,6 @@ class ManageNumbers extends ManageRecords
     {
         return [
             ImportAction::make()
-                ->handleBlankRows(true)
                 ->uniqueField('id_number')
                 ->fields([
                     ImportField::make('id_number')

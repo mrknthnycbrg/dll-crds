@@ -31,16 +31,17 @@ class ListResearch extends ListRecords
                         ->mutateBeforeCreate(fn ($value) => Date::excelToDateTimeObject($value)
                             ->format('Y-m-d')),
                     ImportField::make('author')
-                        ->label('Author(s)')
+                        ->label('Authors')
                         ->mutateBeforeCreate(fn ($value) => Str::title($value)),
                     ImportField::make('keyword')
-                        ->label('Keyword(s)'),
+                        ->label('Keywords'),
                     ImportField::make('department_id')
-                        ->label('Department'),
+                        ->label('Department')
+                        ->required(),
                     ImportField::make('adviser')
                         ->label('Adviser')
                         ->mutateBeforeCreate(fn ($value) => Str::title($value)),
-                ]),
+                ], columns: 2),
             Actions\CreateAction::make(),
         ];
     }

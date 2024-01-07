@@ -96,11 +96,11 @@ class ResearchResource extends Resource
                                     ->native(false)
                                     ->closeOnDateSelection(),
                                 Forms\Components\TagsInput::make('author')
-                                    ->label('Author(s)')
+                                    ->label('Authors')
                                     ->placeholder('Add author')
                                     ->separator(', '),
                                 Forms\Components\TagsInput::make('keyword')
-                                    ->label('Keyword(s)')
+                                    ->label('Keywords')
                                     ->placeholder('Add keyword')
                                     ->separator(', '),
                             ]),
@@ -157,12 +157,12 @@ class ResearchResource extends Resource
                     ->label('Published')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('author')
-                    ->label('Author(s)')
+                    ->label('Authors')
                     ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('keyword')
-                    ->label('Keyword(s)')
+                    ->label('Keywords')
                     ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
