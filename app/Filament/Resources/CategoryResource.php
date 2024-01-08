@@ -95,6 +95,7 @@ class CategoryResource extends Resource
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make()
+                    ->label('Deleted Records')
                     ->native(false),
             ])
             ->actions([

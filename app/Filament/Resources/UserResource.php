@@ -145,6 +145,7 @@ class UserResource extends Resource
                     ->falseLabel('Unverified users')
                     ->native(false),
                 Tables\Filters\TrashedFilter::make()
+                    ->label('Deleted Records')
                     ->native(false),
             ])
             ->actions([

@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ResearchResource\Pages;
 use App\Models\Research;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
@@ -198,18 +199,44 @@ class ResearchResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
+                Tables\Filters\Filter::make('date_submitted')
+                    ->form([
+                        DatePicker::make('submitted_from')
+                            ->label('Submitted From')
+                            ->maxDate(now())
+                            ->native(false)
+                            ->closeOnDateSelection(),
+                        DatePicker::make('submitted_until')
+                            ->label('Submitted Until')
+                            ->maxDate(now())
+                            ->native(false)
+                            ->closeOnDateSelection(),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['submitted_from'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('date_submitted', '>=', $date),
+                            )
+                            ->when(
+                                $data['submitted_until'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('date_submitted', '<=', $date),
+                            );
+                    }),
+                Tables\Filters\SelectFilter::make('department')
+                    ->label('Department')
+                    ->relationship('department', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->native(false),
                 Tables\Filters\TernaryFilter::make('published')
                     ->label('Published')
                     ->placeholder('All researches')
                     ->trueLabel('Published researches')
                     ->falseLabel('Unpublished researches')
                     ->native(false),
-                Tables\Filters\SelectFilter::make('department')
-                    ->relationship('department', 'name')
-                    ->searchable()
-                    ->preload()
-                    ->native(false),
                 Tables\Filters\TrashedFilter::make()
+                    ->label('Deleted Records')
                     ->native(false),
             ])
             ->actions([

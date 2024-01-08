@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PostResource\Pages;
 use App\Models\Post;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
@@ -173,6 +174,36 @@ class PostResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
+                Tables\Filters\Filter::make('date_published')
+                    ->form([
+                        DatePicker::make('published_from')
+                            ->label('Published From')
+                            ->maxDate(now())
+                            ->native(false)
+                            ->closeOnDateSelection(),
+                        DatePicker::make('published_until')
+                            ->label('Published Until')
+                            ->maxDate(now())
+                            ->native(false)
+                            ->closeOnDateSelection(),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['published_from'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('date_published', '>=', $date),
+                            )
+                            ->when(
+                                $data['published_until'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('date_published', '<=', $date),
+                            );
+                    }),
+                Tables\Filters\SelectFilter::make('category')
+                    ->label('Category')
+                    ->relationship('category', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->native(false),
                 Tables\Filters\TernaryFilter::make('published')
                     ->label('Published')
                     ->placeholder('All posts')
@@ -180,6 +211,7 @@ class PostResource extends Resource
                     ->falseLabel('Unpublished posts')
                     ->native(false),
                 Tables\Filters\TrashedFilter::make()
+                    ->label('Deleted Records')
                     ->native(false),
             ])
             ->actions([
