@@ -12,9 +12,11 @@ use Filament\Forms\Set;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\Indicator;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
@@ -158,6 +160,21 @@ class DownloadableResource extends Resource
                                 $data['published_until'],
                                 fn (Builder $query, $date): Builder => $query->whereDate('date_published', '<=', $date),
                             );
+                    })
+                    ->indicateUsing(function (array $data): array {
+                        $indicators = [];
+
+                        if ($data['published_from'] ?? null) {
+                            $indicators[] = Indicator::make('Published from '.Carbon::parse($data['published_from'])->toFormattedDateString())
+                                ->removeField('published_from');
+                        }
+
+                        if ($data['published_until'] ?? null) {
+                            $indicators[] = Indicator::make('Published until '.Carbon::parse($data['published_until'])->toFormattedDateString())
+                                ->removeField('published_until');
+                        }
+
+                        return $indicators;
                     }),
                 Tables\Filters\TernaryFilter::make('published')
                     ->label('Published')

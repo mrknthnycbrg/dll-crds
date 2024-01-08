@@ -13,9 +13,11 @@ use Filament\Forms\Set;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\Indicator;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
@@ -222,6 +224,21 @@ class ResearchResource extends Resource
                                 $data['submitted_until'],
                                 fn (Builder $query, $date): Builder => $query->whereDate('date_submitted', '<=', $date),
                             );
+                    })
+                    ->indicateUsing(function (array $data): array {
+                        $indicators = [];
+
+                        if ($data['submitted_from'] ?? null) {
+                            $indicators[] = Indicator::make('Submitted from '.Carbon::parse($data['submitted_from'])->toFormattedDateString())
+                                ->removeField('submitted_from');
+                        }
+
+                        if ($data['submitted_until'] ?? null) {
+                            $indicators[] = Indicator::make('Submitted until '.Carbon::parse($data['submitted_until'])->toFormattedDateString())
+                                ->removeField('submitted_until');
+                        }
+
+                        return $indicators;
                     }),
                 Tables\Filters\SelectFilter::make('department')
                     ->label('Department')
