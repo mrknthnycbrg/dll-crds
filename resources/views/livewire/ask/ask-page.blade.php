@@ -13,8 +13,8 @@
                     Ask
                 </x-button>
             </form>
-            <div class="w-full p-8">
-                {{ $output }}
+            <div class="prose w-full max-w-none py-8">
+                {!! $output !!}
             </div>
         </div>
     </div>
